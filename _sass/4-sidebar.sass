@@ -5,10 +5,10 @@
   position: absolute
   top: 0
   bottom: 0
-  left: -$sidebar-width
+  left: 0
   z-index: 20
   width: $sidebar-width
-  background-color: $sidebar-bg
+  background: $sidebar-bg
   overflow: hidden
   transition: left .35s $time-function, transform .35s $time-function
   user-select: none
@@ -16,14 +16,10 @@
     float: left
     width: $sidebar-left-width
     height: 100%
-    background: $sidebar-left-bg
   &-right
     float: left
     width: $sidebar-right-width
     height: 100%
-    background: $sidebar-right-bg
-  &.open
-    transform: translateX(100%)
 
 
 // Sidebar Left
@@ -59,19 +55,19 @@
     @extend %icon
 
   &.feed:before
-    @extend %icon-rss
+    @extend %icon-feed
   &.email:before
-    @extend %icon-envelop
+    @extend %icon-mail
   &.twitter:before
     @extend %icon-twitter
   &.weibo:before
-    @extend %icon-sina-weibo
+    @extend %icon-weibo
   &.github:before
     @extend %icon-github
-  &.linkedin:before
-    @extend %icon-linkedin
-  &.instagram:before
-    @extend %icon-instagram
+  &.codepen:before
+    @extend %icon-codepen
+  &.dribbble:before
+    @extend %icon-dribbble
 
 
 #sidebar-tags
@@ -177,7 +173,7 @@
     left: 12px
     z-index: 1
     @extend %icon
-    @extend %icon-chevron-right
+    @extend %icon-bullet
     font-size: $toc-bullet-size
     color: $toc-bullet-unread
     transition: transform .15s linear

@@ -1,15 +1,13 @@
 
 #main
   float: right
-  width: 100%
+  width: calc(100% - #{$sidebar-width})
   height: 100%
   overflow: auto
   -webkit-overflow-scrolling: touch
   transition: width .35s $time-function
   // &.fadeIn
   //   animation: fadeIn .6s $time-function
-  &.open
-    width: calc(100% - #{$sidebar-width})
 
 .container
   max-width: $post-max-width
@@ -33,6 +31,7 @@ h1 + h2, h2 + h3, h3 + h4, h4 + h5, h5 + h6
   padding-top: 2em
   font-size: $post-font-size
   line-height: $post-line-height
+  text-shadow: 1px 1px 0 #fff
 
   &-title
     margin: 0 0 $post-paragraph-spacing * .75
@@ -45,15 +44,15 @@ h1 + h2, h2 + h3, h3 + h4, h4 + h5, h5 + h6
       margin-right: 1em
       &.date:before
         @extend %icon
-        @extend %icon-clock
+        @extend %icon-date
         margin-right: .2em
       &.tag:before
         @extend %icon
-        @extend %icon-price-tags
+        @extend %icon-tag
         margin-right: .2em
       &.comment:before
         @extend %icon
-        @extend %icon-bubble
+        @extend %icon-comment
         margin-right: .2em
 
   a
@@ -83,7 +82,7 @@ h1 + h2, h2 + h3, h3 + h4, h4 + h5, h5 + h6
     font-style: italic
     &:before
       @extend %icon
-      @extend %icon-quotes-left
+      @extend %icon-quote
       position: absolute
       top: 0
       left: -1.5em
@@ -145,11 +144,11 @@ h1 + h2, h2 + h3, h3 + h4, h4 + h5, h5 + h6
     &:before
       @extend %icon
     &.twitter:before
-      @extend %icon-twitter
+      @extend %icon-twitter-share
     &.evernote:before
       @extend %icon-evernote
     &.weibo:before
-      @extend %icon-sina-weibo
+      @extend %icon-weibo
 
 
 // comment
