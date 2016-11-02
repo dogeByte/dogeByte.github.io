@@ -9,7 +9,7 @@ url: "https://dogebyte.github.io/" # the base hostname & protocol for your site
 
 # Sidebar filter
 # Choose 'tag' or 'category' as filter in sidebar.
-filter: 'category'
+filter: 'tag'
 
 
 # Social account
@@ -29,8 +29,16 @@ disqus_shortname: dogebyte
 
 
 # Build settings
-markdown: kramdown
+highlighter: pygments
+markdown: redcarpet
+redcarpet:
+  extensions:
+    - fenced_code_blocks
+    - no_intra_emphasis
+    - strikethrough
+    - autolink
+    - tables
 sass:
   style: compressed
 gems:
-  - jekyll-sitemap
+  - jekyll-paginate
