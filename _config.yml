@@ -30,14 +30,7 @@ disqus_shortname: dogebyte
 
 # Build settings
 highlighter: pygments
-markdown: redcarpet
-redcarpet:
-  extensions:
-    - fenced_code_blocks
-    - no_intra_emphasis
-    - strikethrough
-    - autolink
-    - tables
+markdown: kramdown
 sass:
   style: compressed
 gems:
