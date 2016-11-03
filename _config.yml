@@ -29,8 +29,15 @@ disqus_shortname: dogebyte
 
 
 # Build settings
-highlighter: pygments
+highlighter: rouge
 markdown: kramdown
+kramdown:
+  input: GFM
+  extensions:
+    - autolink
+    - footnotes
+    - smart
+  syntax_highlighter: rouge
 sass:
   style: compressed
 gems:

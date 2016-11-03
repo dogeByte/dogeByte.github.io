@@ -5,7 +5,7 @@ date:   2016-11-01 11:15:23
 categories: Java
 tags: Java
 ---
-{% highlight java linenos %}
+```java
 /**
  * This is about <code>ClassName</code>.
  * {@link com.yourCompany.aPackage.Interface}
@@ -28,5 +28,5 @@ public class ClassName<E> extends AnyClass implements InterfaceName<String> {
 		return bar(local) + parameter;
 	}
 }
-{% endhighlight %}
+```
 test_Java_hello
