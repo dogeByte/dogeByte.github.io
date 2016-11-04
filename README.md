@@ -2,4 +2,4 @@
 
 博客地址：[https://dogebyte.github.io/](https://dogebyte.github.io/)
 
-网站静态页面由[Jekyll](https://jekyllrb.com/)生成，页面主题基于[3-Jekyll](https://github.com/P233/3-Jekyll)，由[kramdown](https://kramdown.gettalong.org/)进行markdown解析，[rouge](http://rouge.jneen.net/)提供语法着色（代码高亮），具体搭建过程请参考[教程]()。
+网站静态页面由 [Jekyll](https://jekyllrb.com/) 生成，页面主题基于 [3-Jekyll](https://github.com/P233/3-Jekyll) ，由 [kramdown](https://kramdown.gettalong.org/) 进行markdown解析， [Rouge](http://rouge.jneen.net/) 提供语法着色（代码高亮），具体搭建过程请参考[教程](https://dogebyte.github.io/jekyll/2016/11/03/blog-on-github.html)。

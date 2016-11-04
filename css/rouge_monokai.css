@@ -185,13 +185,3 @@
 .highlight .o {
   color: rgb(255,255,0);
 }
-.post {
-  text-shadow: none;
-}
-.post code {
-  font-size: .6em;
-}
-.post pre {
-  line-height: 1.1;
-  padding: .5em;
-}

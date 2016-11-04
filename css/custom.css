@@ -1,0 +1,21 @@
+.post {
+  text-shadow: none;
+}
+.post code {
+  font-size: .6em;
+}
+.post pre {
+  line-height: 1.1;
+  padding: .5em;
+}
+.post blockquote {
+  background-color: rgb(241,252,159);
+  font-size: .8em;
+  font-style: normal;
+}
+.post blockquote p {
+  margin-bottom: 10px;
+}
+.post img {
+  width : auto;
+}
