@@ -44,7 +44,7 @@ Maven 也可被用于构建和管理各种项目，例如 C# ， Ruby ， Scala 
 在 `D:\apache-maven-3.3.9\conf\settings.xml` 文件中添加
 
 ```xml
-<localRepository>D:\My\Java\maven\repository</localRepository>
+<localRepository>D:\maven\repository</localRepository>
 ```
 
 将修改后的 `settings.xml` 文件复制到 `D:\maven\` 中。
