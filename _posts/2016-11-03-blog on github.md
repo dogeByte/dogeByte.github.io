@@ -25,7 +25,7 @@ tags: Jekyll
 
 对于一个托管在 [GitHub](https://github.com/) 上的项目，它们看上去往往是这样：
 
-[![mybatis的文件目录](https://s25.postimg.org/590l8sx9r/01_Git_Hub_repository.png)](https://postimg.org/image/sah6ejwx7/)
+![mybatis 的文件目录](https://s25.postimg.org/590l8sx9r/01_Git_Hub_repository.png)
 
 但是对于一个新手来说，看到一大堆源代码，只会让人头晕脑涨，不知何处入手。他希望看到的是，一个简明易懂的网页，说明每一步应该怎么做。于是 [GitHub Pages](https://pages.github.com/) 诞生了。
 
@@ -98,7 +98,7 @@ tags: Jekyll
 
 [新建](https://github.com/new)一个 git 仓库，名称为 username.github.io ，用你自己的 [GitHub](https://github.com/) 账户名替换仓库名中的 username 。
 
-[![创建GitHub仓库](https://s25.postimg.org/723hx4igf/02_new_repository.png)](https://postimg.org/image/zeyznl46j/)
+![创建 GitHub 仓库](https://s25.postimg.org/723hx4igf/02_new_repository.png)
 
 <h1 id="4">配置 git 环境</h1>
 
@@ -110,7 +110,7 @@ tags: Jekyll
 
 安装完成后，在开始菜单中找到Git Bash并打开。
 
-[![Git Bash](https://s25.postimg.org/49evqu7hr/03_git_bash.png)](https://postimg.org/image/n1qquf3vv/)
+![Git Bash](https://s25.postimg.org/49evqu7hr/03_git_bash.png)
 
 在打开的命令行窗口内执行以下命令，设置你的 git 用户名和邮箱：
 
@@ -133,11 +133,11 @@ $ ssh-keygen -t rsa -C "email@example.com"
 
 登录 [GitHub](https://github.com/) ，点击右上角的 [Settings](https://github.com/settings/keys) 。
 
-[![Settings](https://s25.postimg.org/62hsf5sof/04_setting.png)](https://postimg.org/image/outniqp2j/)
+![个人设置](https://s25.postimg.org/62hsf5sof/04_setting.png)
 
 使用记事本打开 `id_rsa.pub` 文件，复制里面的全部内容，粘贴到下图的 Key 中。
 
-[![SSH keys](https://s25.postimg.org/vzbgrrwbz/05_ssh_key.png)](https://postimg.org/image/5e8xw7tyj/)
+![SSH keys](https://s25.postimg.org/vzbgrrwbz/05_ssh_key.png)
 
 至此， git 环境搭建完成。
 
@@ -147,23 +147,23 @@ $ ssh-keygen -t rsa -C "email@example.com"
 
 对该目录进行 git 初始化：在目录空白处右键，点击 `Git Bash Here` ，在当前目录打开Git Bash 命令行，执行 `$ git init` 。
 
-[![Git Bash Here](https://s25.postimg.org/i6x1w55kf/06_Git_Bash_Here.png)](https://postimg.org/image/iwfu8i63v/)
+![Git Bash Here](https://s25.postimg.org/i6x1w55kf/06_Git_Bash_Here.png)
 
 此时目录内会生成一个 `.git` 隐藏文件夹，千万不要手动修改里里面的内容，否则将破坏此 git 仓库。
 
 现在有两种方法可以得到喜欢的模板。我们可以使用 [GitHub](https://github.com/) 官方提供的主题：进入[第一步](#1)创建的 [GitHub](https://github.com/) 仓库，点击 `Settings` ，找到 `GitHub Pages` 设置，点击 `Choose a theme` 。
 
-[![设置主题](https://s25.postimg.org/9fq11vm9b/07_Choose_a_theme.png)](https://postimg.org/image/lhlew0vhn/)
+![设置主题](https://s25.postimg.org/9fq11vm9b/07_Choose_a_theme.png)
 
 [GitHub](https://github.com/) 官方提供了大量风格迥异的主题，并且可以预览，现在挑个喜欢的，点击 Select theme 保存到自己的 [GitHub](https://github.com/) 仓库里吧！
 
-[![08 themes.png](https://s25.postimg.org/5ynyywn73/08_themes.png)](https://postimg.org/image/9i9woppwr/)
+![主题列表](https://s25.postimg.org/5ynyywn73/08_themes.png)
 
 另一种获取模板或主题的方法是，使用别人的源码。 [Jekyll 项目](https://github.com/jekyll/jekyll/wiki/sites)给出了许多基于 [Jekyll](https://jekyllrb.com/) 的网站，把这些网站的源码 `fork` 到自己的 [GitHub](https://github.com/) 仓库里即可。
 
 无论是选择 [GitHub](https://github.com/) 官方主题，还是 `fork` 他人的源码，都需要把 [GitHub](https://github.com/) 仓库中的源文件下载到本地的博客目录中。在 [GitHub](https://github.com/) 仓库中点击 `Clone or download` ，复制远端 git 仓库地址。
 
-[![09 Clone or download.png](https://s25.postimg.org/jguvb6zcf/09_Clone_or_download.png)](https://postimg.org/image/dsokkauzv/)
+![克隆](https://s25.postimg.org/jguvb6zcf/09_Clone_or_download.png)
 
 进入本地项目目录，在 Git Bash 命令行中执行： `$ git clone git@github.com:username/username.git` ，注意将 `username` 替换为你自己的 [GitHub](https://github.com/) 用户名，执行完成后，就成功把主题克隆到本地目录中。
 
@@ -175,7 +175,7 @@ $ ssh-keygen -t rsa -C "email@example.com"
 
 请移步[下载地址](http://rubyinstaller.org/downloads/)， x64 代表64位，请根据实际环境选择合适的版本。
 
-[![下载 Ruby](https://s25.postimg.org/e6uhxn4hb/10_download_ruby.png)](https://postimg.org/image/n1vc85t9n/)
+![下载 Ruby](https://s25.postimg.org/e6uhxn4hb/10_download_ruby.png)
 
 安装时有两点注意事项：
 
@@ -183,7 +183,7 @@ $ ssh-keygen -t rsa -C "email@example.com"
 > 
 > 2. 勾选 “ 将 Ruby 添加到环境变量 PATH ”
 
-[![安装 Ruby](https://s25.postimg.org/b19w7flv3/11_install_ruby.png)](https://postimg.org/image/y2qhd6lij/)
+![安装 Ruby](https://s25.postimg.org/b19w7flv3/11_install_ruby.png)
 
 安装完成后，在命令提示符中执行 `ruby -v` ，输出 Ruby 版本号则说明安装成功。
 
