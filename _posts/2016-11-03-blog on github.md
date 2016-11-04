@@ -76,19 +76,19 @@ tags: Jekyll
 
 > _drafts 目录用来保存草稿，与已经发布的文章不同，这是没有日期的文章，运行 jekyll serve 会自动赋予当前日期。
 > 
-> _includes 目录中包含的 html 文件可以作为模块来加载；
+> _includes 目录中包含的 html 文件可以作为模块来加载。
 > 
-> _layouts 目录存放文章的模板， default.html 是整个网站的框架， post.html 则是单个文章的模板；
+> _layouts 目录存放文章的模板， default.html 是整个网站的框架， post.html 则是单个文章的模板。
 > 
-> _posts 目录中保存已发布的文章，文件名必须符合 yyyy-MM-dd-title.md ，否则会有错误；
+> _posts 目录中保存已发布的文章，文件名必须符合 yyyy-MM-dd-title.md ，否则会出现错误。
 > 
-> assets 目录存放网站的布局文件；
+> assets 目录存放网站的布局文件。
 > 
-> _config.yml 用来保存配置信息；
+> _config.yml 用来保存配置信息。
 > 
-> 404.html 为 404 错误页面；
+> 404.html 为 404 错误页面。
 > 
-> index.html 为博客首页；
+> index.html 为博客首页
 
 [Jekyll](https://jekyllrb.com/) 与 [GitHub Pages](https://pages.github.com/) 的关系：[GitHub Pages](https://pages.github.com/)是一个由 [GitHub](https://github.com/) 提供的用于托管项目主页或博客的服务， [Jekyll](https://jekyllrb.com/) 是后台运行的引擎。
 
