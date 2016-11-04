@@ -1,9 +1,9 @@
 ---
 layout: post
-title:  "使用GitHub Pages搭建个人博客"
+title:  "使用 GitHub Pages 搭建个人博客"
 date:   2016-11-03 21:25:23
 categories: Jekyll
-tags: Jekyll
+tags: GitHub,Ruby,Jekyll
 ---
 
 # 目录
@@ -88,7 +88,7 @@ tags: Jekyll
 > 
 > 404.html 为 404 错误页面。
 > 
-> index.html 为博客首页
+> index.html 为博客首页。
 
 [Jekyll](https://jekyllrb.com/) 与 [GitHub Pages](https://pages.github.com/) 的关系：[GitHub Pages](https://pages.github.com/)是一个由 [GitHub](https://github.com/) 提供的用于托管项目主页或博客的服务， [Jekyll](https://jekyllrb.com/) 是后台运行的引擎。
 
