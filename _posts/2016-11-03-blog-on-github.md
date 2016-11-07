@@ -71,6 +71,7 @@ tags: GitHub,Ruby,Jekyll
     ┕ js
 ├ _config.yml
 ├ 404.html
+├ favicon.ico
 ┕ index.html
 ```
 
@@ -82,11 +83,15 @@ tags: GitHub,Ruby,Jekyll
 > 
 > _posts 目录中保存已发布的文章，文件名必须符合 yyyy-MM-dd-title.md ，否则会出现错误。
 > 
+> _site 目录存放最终生成的网站文件。
+> 
 > assets 目录存放网站的布局文件。
 > 
 > _config.yml 用来保存配置信息。
 > 
 > 404.html 为 404 错误页面。
+> 
+> favicon.ico 为网站的小图标。
 > 
 > index.html 为博客首页。
 
@@ -314,7 +319,9 @@ gems:
   - jekyll-paginate
 ```
 
-在本地项目目录中，命令行执行 `jekyll serve` ，待Jekyll服务开启后，使用浏览器访问 [http://127.0.0.1:4000/](http://127.0.0.1:4000/) 或 [http://localhost:4000/](http://localhost:4000/) ，即可预览查看 `_post` 文件夹中的文章。
+在本地项目目录中，使用命令行执行 `jekyll build` ，项目目录中的文件以及由 `_post` 文件夹中 md 文件生成的 html 文件，都会被复制到 `_site` 目录中。
+
+若使用命令行执行 `jekyll serve` ，项目会先执行 `jekyll build` ，待Jekyll服务开启后，使用浏览器访问 [http://127.0.0.1:4000/](http://127.0.0.1:4000/) 或 [http://localhost:4000/](http://localhost:4000/) ，即可预览查看 `_post` 文件夹中的文章。
 
 <h3 id="6_4">配置代码高亮</h3>
 
