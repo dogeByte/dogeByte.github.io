@@ -2,7 +2,7 @@
 layout: post
 title:  "使用 GitHub Pages 搭建个人博客"
 date:   2016-11-03 21:25:23
-categories: Jekyll
+categories: Others
 tags: GitHub,Ruby,Jekyll
 ---
 
