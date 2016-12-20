@@ -42,7 +42,7 @@ public class Singleton {
         if (instance == null) {
             instance = new Singleton();
         }
-    return instance;
+        return instance;
     }
 }
 ```
@@ -57,7 +57,7 @@ public class Singleton {
         if (instance == null) {
             instance = new Singleton();
         }
-    return instance;
+        return instance;
     }
 }
 ```
@@ -76,7 +76,7 @@ public class Singleton {
                 }
             }
         }
-        return instance ;
+        return instance;
     }
 }
 ```
@@ -89,16 +89,16 @@ public class Singleton {
 
 但是在 JVM 的即时编译器中存在指令重排序的优化，即上面的第二步和第三步的顺序是不能保证的，最终的执行顺序可能是 1-2-3 也可能是 1-3-2。如果是后者，则在 3 执行完毕且 2 未执行之前，CPU被线程二抢占，这时 instance 已经是非 null，所以线程二会直接返回尚未初始化的 instance，调用它则会报错。
 
-此时只需要将 instance 变量声明成 volatile 就可以了。
+此时只需要将变量 instance 声明为 volatile 就可以了。
 
 ```java
 public class Singleton {
-    private static volatile Singleton instance;
     private Singleton () {}
+    private static volatile Singleton instance;
     public static Singleton getSingleton() {
-        if (instance == null) {                         
+        if (instance == null) {
             synchronized (Singleton.class) {
-                if (instance == null) {       
+                if (instance == null) {
                     instance = new Singleton();
                 }
             }
@@ -129,9 +129,9 @@ public class Singleton {
 <h1 id="4">枚举</h1>
 
 ```java
-public enum Singleton{
+public enum Singleton {
     INSTANCE;
 }
 ```
 
-可以通过 Singleton.INSTANCE 来访问实例，这比调用 getInstance() 方法简单多了。创建枚举默认是线程安全的，而且还能防止反序列化导致重新创建新的对象。
+这时可以通过 Singleton.INSTANCE 来访问实例，创建枚举默认是线程安全的，而且还能防止反序列化导致重新创建新的对象。
