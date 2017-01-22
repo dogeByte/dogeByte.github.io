@@ -279,7 +279,7 @@ void afterNodeRemoval(Node<K,V> e) { // unlink
 
 <h1 id="6">linkedHashSet</h1>
 
-`LinkedHashSet` 内部维护着一个 `LinkedHashMap`，通过调用父类的[构造方法](https://dogebyte.github.io/jcf/2017/03/08/JCF(6)-HashMap-and-HashSet-in-JDK1.8.html#5) HashSet(int initialCapacity, float loadFactor, boolean dummy) 实现。
+`LinkedHashSet` 内部维护着一个 `LinkedHashMap`，通过调用父类的[构造方法](https://dogebyte.github.io/jcf/2017/03/08/JCF(6)-HashMap-and-HashSet-in-JDK1.8.html#6) HashSet(int initialCapacity, float loadFactor, boolean dummy) 实现。
 
 ```java
 public class LinkedHashSet<E>
