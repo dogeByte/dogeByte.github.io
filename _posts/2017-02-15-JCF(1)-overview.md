@@ -2,7 +2,7 @@
 layout: post
 title:  "集合框架概述"
 date:   2017-02-15 06:45:41
-categories: Java集合框架
+categories: JCF
 tags: Java
 ---
 
@@ -94,8 +94,8 @@ cars.add("Audi");
 cars.add("Benz");
 cars.add("BMW");
 for (int i = 0; i < cars.size(); i++) {
-	String car = (String) cars.get(i);    // 显式类型转换
-	System.out.println(car);
+    String car = (String) cars.get(i);    // 显式类型转换
+    System.out.println(car);
 }
 ```
 
@@ -107,8 +107,8 @@ cars.add("Audi");
 cars.add("Benz");
 cars.add("BMW");
 for (int i = 0; i < cars.size(); i++) {
-	String car = cars.get(i);    // 隐式类型转换
-	System.out.println(car);
+    String car = cars.get(i);    // 隐式类型转换
+    System.out.println(car);
 }
 ```
 
@@ -128,8 +128,8 @@ cars.add("Audi");
 cars.add("Benz");
 cars.add("BMW");
 for (Iterator<String> iterator = cars.iterator(); iterator.hasNext();) {
-	String car = iterator.next();
-	System.out.println(car);
+    String car = iterator.next();
+    System.out.println(car);
 }
 ```
 
@@ -141,7 +141,7 @@ cars.add("Audi");
 cars.add("Benz");
 cars.add("BMW");
 for (String car : cars) {
-	System.out.println(car);
+    System.out.println(car);
 }
 ```
 

@@ -8,15 +8,15 @@ tags: Java
 
 # 目录 
 1. [枚举类 Month 和 DayOfWeek](#1)
-	1. [Month](#1_1)
-	2. [DayOfWeek](#1_2)
+    1. [Month](#1_1)
+    2. [DayOfWeek](#1_2)
 2. [日期和时间](#2)
-	1. [LocalDate 和 LocalTime](#2_1)
-	2. [LocalDateTime](#2_2)
+    1. [LocalDate 和 LocalTime](#2_1)
+    2. [LocalDateTime](#2_2)
 3. [解析和格式化](#3)
 4. [调节器](#4)
-	1. [TemporalAdjusters](#4_1)
-	2. [自定义调节器](#4_2)
+    1. [TemporalAdjusters](#4_1)
+    2. [自定义调节器](#4_2)
 
 [上集](https://dogebyte.github.io/java/2017/03/12/date-in-java(1).html)简单介绍了 Java 中的 `Date` 类， `Calendar` 类以及用于格式化的 `SimpleDateFormater` 类。使用这些类的时候我们会明显地感受到其中的不便之处，比如 `Calendar` 类的月份是从 0 开始计数的；日期格式输出不够友好，都需要使用 `SimpleDateFormater` 类来格式化；一些简单的日期计算也比较麻烦等等。所以就有了 joda-time 这种第三方库来简化 Java 对于日期和时间的操作。为了改变这种情况， jdk 8 中对日期和时间对处理就吸收了 joda-time 库的特性。
 
@@ -28,10 +28,10 @@ tags: Java
 
 ```java
 public static Month of(int month) {
-	if (month < 1 || month > 12) {
-		throw new DateTimeException("Invalid value for MonthOfYear: " + month);
-	}
-	return ENUMS[month - 1];
+    if (month < 1 || month > 12) {
+        throw new DateTimeException("Invalid value for MonthOfYear: " + month);
+    }
+    return ENUMS[month - 1];
 }
 ```
 
@@ -39,7 +39,7 @@ public static Month of(int month) {
 
 ```java
 public int getValue() {
-	return ordinal() + 1;
+    return ordinal() + 1;
 }
 ```
 
@@ -47,8 +47,8 @@ public int getValue() {
 
 ```java
 public Month plus(long months) {
-	int amount = (int) (months % 12);
-	return ENUMS[(ordinal() + (amount + 12)) % 12];
+    int amount = (int) (months % 12);
+    return ENUMS[(ordinal() + (amount + 12)) % 12];
 }
 ```
 
@@ -56,7 +56,7 @@ public Month plus(long months) {
 
 ```java
 public Month minus(long months) {
-	return plus(-(months % 12));
+    return plus(-(months % 12));
 }
 ```
 
@@ -64,17 +64,17 @@ public Month minus(long months) {
 
 ```java
 public int length(boolean leapYear) {
-	switch (this) {
-		case FEBRUARY:
-			return (leapYear ? 29 : 28);
-		case APRIL:
-		case JUNE:
-		case SEPTEMBER:
-		case NOVEMBER:
-			return 30;
-		default:
-			return 31;
-	}
+    switch (this) {
+        case FEBRUARY:
+            return (leapYear ? 29 : 28);
+        case APRIL:
+        case JUNE:
+        case SEPTEMBER:
+        case NOVEMBER:
+            return 30;
+        default:
+            return 31;
+    }
 }
 ```
 
@@ -128,11 +128,11 @@ System.out.println(dayOfWeek.getDisplayName(TextStyle.NARROW, Locale.ENGLISH)); 
 
 <h1 id="2">日期时间</h1>
 
-> - `LocalDate` 类可以获取当前日期（不包含时间），并可以进行相应处理。
+> - LocalDate 类可以获取当前日期（不包含时间），并可以进行相应处理。
 > 
-> - `LocalTime` 类可以获取当前时间（不包含日期），并可以进行相应处理。
+> - LocalTime 类可以获取当前时间（不包含日期），并可以进行相应处理。
 > 
-> - `LocalDateTime` 类可以同时处理日期和时间。
+> - LocalDateTime 类可以同时处理日期和时间。
 
 <h3 id="2_1">LocalDate 和 LocalTime</h3>
 
@@ -417,16 +417,16 @@ System.out.println("本月的第一个周二是 " + date.with(TemporalAdjusters.
 
 ```java
 LocalDate date = LocalDate.of(2016, Month.DECEMBER, 20).with(new TemporalAdjuster() {
-	@Override
-	public Temporal adjustInto(Temporal temporal) {
-		LocalDate date = LocalDate.from(temporal);
-		int day = date.getDayOfMonth() < 15 ? 15 : date.lengthOfMonth();
-		date = date.withDayOfMonth(day);
-		if (DayOfWeek.SATURDAY.equals(date.getDayOfWeek()) || DayOfWeek.SUNDAY.equals(date.getDayOfWeek())) {
-			date = date.with(TemporalAdjusters.previous(DayOfWeek.FRIDAY));
-		}
-		return temporal.with(date);
-	}
+    @Override
+    public Temporal adjustInto(Temporal temporal) {
+        LocalDate date = LocalDate.from(temporal);
+        int day = date.getDayOfMonth() < 15 ? 15 : date.lengthOfMonth();
+        date = date.withDayOfMonth(day);
+        if (DayOfWeek.SATURDAY.equals(date.getDayOfWeek()) || DayOfWeek.SUNDAY.equals(date.getDayOfWeek())) {
+            date = date.with(TemporalAdjusters.previous(DayOfWeek.FRIDAY));
+        }
+        return temporal.with(date);
+    }
 });
 System.out.println(date);    // 2016-12-30
 ```

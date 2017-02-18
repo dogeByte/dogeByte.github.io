@@ -9,17 +9,17 @@ tags: MyEclipse,Maven
 # 目录
 1. [Maven 简介](#1)
 2. [配置 Maven 环境](#2)
-	1. [下载](#2_1)
-	2. [配置环境变量](#2_2)
-	3. [建立 Maven 仓库](#2_3)
-	4. [配置 MyEclipse](#2_4)
+    1. [下载](#2_1)
+    2. [配置环境变量](#2_2)
+    3. [建立 Maven 仓库](#2_3)
+    4. [配置 MyEclipse](#2_4)
 3. [创建 Maven 项目](#3)
 4. [常见的 Error / Warning](#4)
-	1. [无尽的 Updating indexes](#4_1)
-	2. [不兼容的 jdk](#4_2)
-	3. [找不到超类 HttpServlet](#4_3)
-	4. [project facet 版本不匹配](#4_4)
-	5. [无法建立源文件夹](#4_5)
+    1. [无尽的 Updating indexes](#4_1)
+    2. [不兼容的 jdk](#4_2)
+    3. [找不到超类 HttpServlet](#4_3)
+    4. [project facet 版本不匹配](#4_4)
+    5. [无法建立源文件夹](#4_5)
 
 <h1 id="1">Maven 简介</h1>
 
@@ -133,21 +133,21 @@ Artifact Id 代表项目名称，填写完成后点击 Finish ，静待 Maven �
 
 ```xml
 <dependency>
-	<groupId>javax.servlet.jsp</groupId>
-	<artifactId>jsp-api</artifactId>
-	<version>2.1</version>
-	<scope>provided</scope>
+    <groupId>javax.servlet.jsp</groupId>
+    <artifactId>jsp-api</artifactId>
+    <version>2.1</version>
+    <scope>provided</scope>
 </dependency>
-	<dependency>
-	<groupId>javax.servlet</groupId>
-	<artifactId>servlet-api</artifactId>
-	<version>2.5</version>
-	<scope>provided</scope>
+    <dependency>
+    <groupId>javax.servlet</groupId>
+    <artifactId>servlet-api</artifactId>
+    <version>2.5</version>
+    <scope>provided</scope>
 </dependency>
 <dependency>
-	<groupId>javax.servlet</groupId>
-	<artifactId>jstl</artifactId>
-	<version>1.2</version>
+    <groupId>javax.servlet</groupId>
+    <artifactId>jstl</artifactId>
+    <version>1.2</version>
 </dependency>
 ```
 

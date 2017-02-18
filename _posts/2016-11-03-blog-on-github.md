@@ -11,14 +11,14 @@ tags: GitHub,Ruby,Jekyll
 2. [Jekyll 简介](#2)
 3. [建立个人 GitHub Pages](#3)
 4. [配置 git 环境](#4)
-	1. [安装 git for windows](#4_1)
-	2. [配置 SSH keys](#4_2)
+    1. [安装 git for windows](#4_1)
+    2. [配置 SSH keys](#4_2)
 5. [创建本地项目](#5)
 6. [配置 Jekyll 环境](#6)
-	1. [安装 Ruby](#6_1)
-	2. [安装 DevKit](#6_2)
-	3. [安装 Jekyll](#6_3)
-	4. [配置代码高亮](#6_4)
+    1. [安装 Ruby](#6_1)
+    2. [安装 DevKit](#6_2)
+    3. [安装 Jekyll](#6_3)
+    4. [配置代码高亮](#6_4)
 7. [扩展阅读](#7)
 
 <h1 id="1">GitHub Pages 简介</h1>
@@ -392,9 +392,9 @@ gems:
 
 ```java
 public class Demo {
-	public static void main(String[] args) {
-		System.out.println("Hello Rouge!");
-	}
+    public static void main(String[] args) {
+        System.out.println("Hello Rouge!");
+    }
 }
 ```
 

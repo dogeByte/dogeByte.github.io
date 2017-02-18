@@ -9,8 +9,8 @@ tags: Java
 # 目录
 1. [intern 简介](#1)
 2. [jdk6 和 jdk7 下 intern 的区别](#2)
-	1. [jdk6 的 intern](#2_1)
-	2. [jdk7 的 intern](#2_2)
+    1. [jdk6 的 intern](#2_1)
+    2. [jdk7 的 intern](#2_2)
 
 <h1 id="1">intern 简介</h1>
 

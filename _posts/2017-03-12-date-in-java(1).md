@@ -8,15 +8,15 @@ tags: Java
 
 # 目录 
 1. [Date](#1)
-	1. [构造方法](#1_1)
-	2. [其它常用方法](#1_2)
+    1. [构造方法](#1_1)
+    2. [其它常用方法](#1_2)
 2. [Calendar](#2)
-	1. [构造方法](#2_1)
-	2. [get() 方法](#2_2)
-	3. [set() 方法](#2_3)
-	4. [add() 和 roll() 方法](#2_4)
-	5. [其它常用方法](#2_5)
-	6. [Date 和 Calendar 的关系](#2_6)
+    1. [构造方法](#2_1)
+    2. [get() 方法](#2_2)
+    3. [set() 方法](#2_3)
+    4. [add() 和 roll() 方法](#2_4)
+    5. [其它常用方法](#2_5)
+    6. [Date 和 Calendar 的关系](#2_6)
 3. [SimpleDateFormat](#3)
 
 自从 JDK 1.0 开始， Java 就提供了 `Date` 来处理时间和日期，作为老古董自然有很多东西是过时的。然后出现了 `Calendar` 来解决了很多问题，但是 `Calendar` 使用比较复杂，并且有些反人类的地方。直到 Java 8 中 `LocalDateTime` 中的出现，它吸收了 Joda-Time 库的经验，使得 Java 处理时间和日期变得比较“人性化”了。本篇介绍 Java 中的 `Date` 、 `Calendar` ，以及 `SimpleDateFormat` 的使用。
@@ -29,39 +29,39 @@ Date 类的构造方法如下：
 
 ```java
 public Date() {
-	this(System.currentTimeMillis());
+    this(System.currentTimeMillis());
 }
 
 public Date(long date) {
-	fastTime = date;
+    fastTime = date;
 }
 
 @Deprecated
 public Date(int year, int month, int date) {
-	this(year, month, date, 0, 0, 0);
+    this(year, month, date, 0, 0, 0);
 }
 
 @Deprecated
 public Date(int year, int month, int date, int hrs, int min) {
-	this(year, month, date, hrs, min, 0);
+    this(year, month, date, hrs, min, 0);
 }
 
 @Deprecated
 public Date(int year, int month, int date, int hrs, int min, int sec) {
-	int y = year + 1900;
-	// month is 0-based. So we have to normalize month to support Long.MAX_VALUE.
-	if (month >= 12) {
-		y += month / 12;
-		month %= 12;
-	} else if (month < 0) {
-		y += CalendarUtils.floorDivide(month, 12);
-		month = CalendarUtils.mod(month, 12);
-	}
-	BaseCalendar cal = getCalendarSystem(y);
-	cdate = (BaseCalendar.Date) cal.newCalendarDate(TimeZone.getDefaultRef());
-	cdate.setNormalizedDate(y, month + 1, date).setTimeOfDay(hrs, min, sec, 0);
-	getTimeImpl();
-	cdate = null;
+    int y = year + 1900;
+    // month is 0-based. So we have to normalize month to support Long.MAX_VALUE.
+    if (month >= 12) {
+        y += month / 12;
+        month %= 12;
+    } else if (month < 0) {
+        y += CalendarUtils.floorDivide(month, 12);
+        month = CalendarUtils.mod(month, 12);
+    }
+    BaseCalendar cal = getCalendarSystem(y);
+    cdate = (BaseCalendar.Date) cal.newCalendarDate(TimeZone.getDefaultRef());
+    cdate.setNormalizedDate(y, month + 1, date).setTimeOfDay(hrs, min, sec, 0);
+    getTimeImpl();
+    cdate = null;
     }
 ```
 
@@ -111,19 +111,19 @@ System.out.println(date.toString());    // Thu Jan 01 09:00:00 CST 1970
 
 ```java
 public static Calendar getInstance() {
-	return createCalendar(TimeZone.getDefault(), Locale.getDefault(Locale.Category.FORMAT));
+    return createCalendar(TimeZone.getDefault(), Locale.getDefault(Locale.Category.FORMAT));
 }
 
 public static Calendar getInstance(TimeZone zone) {
-	return createCalendar(zone, Locale.getDefault(Locale.Category.FORMAT));
+    return createCalendar(zone, Locale.getDefault(Locale.Category.FORMAT));
 }
 
 public static Calendar getInstance(Locale aLocale) {
-	return createCalendar(TimeZone.getDefault(), aLocale);
+    return createCalendar(TimeZone.getDefault(), aLocale);
 }
 
 public static Calendar getInstance(TimeZone zone, Locale aLocale) {
-	return createCalendar(zone, aLocale);
+    return createCalendar(zone, aLocale);
 }
 ```
 
@@ -144,12 +144,12 @@ nFirstWeek=1,ERA=1,YEAR=2017,MONTH=2,WEEK_OF_YEAR=11,WEEK_OF_MONTH=3,DAY_OF_MONT
 
 ```java
 public int get(int field) {
-	complete();
-	return internalGet(field);
+    complete();
+    return internalGet(field);
 }
 
 protected final int internalGet(int field) {
-	return fields[field];
+    return fields[field];
 }
 ```
 
@@ -190,44 +190,44 @@ public static final int DST_OFFSET = 16;
 ```java
 public void set(int field, int value)
 {
-	// If the fields are partially normalized, calculate all the fields before changing any fields.
-	if (areFieldsSet && !areAllFieldsSet) {
-		computeFields();
-	}
-	internalSet(field, value);
-	isTimeSet = false;
-	areFieldsSet = false;
-	isSet[field] = true;
-	stamp[field] = nextStamp++;
-	if (nextStamp == Integer.MAX_VALUE) {
-		adjustStamp();
-	}
+    // If the fields are partially normalized, calculate all the fields before changing any fields.
+    if (areFieldsSet && !areAllFieldsSet) {
+        computeFields();
+    }
+    internalSet(field, value);
+    isTimeSet = false;
+    areFieldsSet = false;
+    isSet[field] = true;
+    stamp[field] = nextStamp++;
+    if (nextStamp == Integer.MAX_VALUE) {
+        adjustStamp();
+    }
 }
 
 public final void set(int year, int month, int date)
 {
-	set(YEAR, year);
-	set(MONTH, month);
-	set(DATE, date);
+    set(YEAR, year);
+    set(MONTH, month);
+    set(DATE, date);
 }
 
 public final void set(int year, int month, int date, int hourOfDay, int minute)
 {
-	set(YEAR, year);
-	set(MONTH, month);
-	set(DATE, date);
-	set(HOUR_OF_DAY, hourOfDay);
-	set(MINUTE, minute);
+    set(YEAR, year);
+    set(MONTH, month);
+    set(DATE, date);
+    set(HOUR_OF_DAY, hourOfDay);
+    set(MINUTE, minute);
 }
 
 public final void set(int year, int month, int date, int hourOfDay, int minute, int second)
 {
-	set(YEAR, year);
-	set(MONTH, month);
-	set(DATE, date);
-	set(HOUR_OF_DAY, hourOfDay);
-	set(MINUTE, minute);
-	set(SECOND, second);
+    set(YEAR, year);
+    set(MONTH, month);
+    set(DATE, date);
+    set(HOUR_OF_DAY, hourOfDay);
+    set(MINUTE, minute);
+    set(SECOND, second);
 }
 ```
 
@@ -312,38 +312,38 @@ private static int[] minimums = new int[] { 0, 1, 0, 1, 0, 1, 1, 1, 1, 0,       
 
 ```java
 public SimpleDateFormat() {
-	this("", Locale.getDefault(Locale.Category.FORMAT));
-	applyPatternImpl(LocaleProviderAdapter.getResourceBundleBased().getLocaleResources(locale).getDateTimePattern(SHORT, SHORT, calendar));
+    this("", Locale.getDefault(Locale.Category.FORMAT));
+    applyPatternImpl(LocaleProviderAdapter.getResourceBundleBased().getLocaleResources(locale).getDateTimePattern(SHORT, SHORT, calendar));
 }
 
 public SimpleDateFormat(String pattern)
 {
-	this(pattern, Locale.getDefault(Locale.Category.FORMAT));
+    this(pattern, Locale.getDefault(Locale.Category.FORMAT));
 }
 
 public SimpleDateFormat(String pattern, Locale locale)
 {
-	if (pattern == null || locale == null) {
-		throw new NullPointerException();
-	}
-	initializeCalendar(locale);
-	this.pattern = pattern;
-	this.formatData = DateFormatSymbols.getInstanceRef(locale);
-	this.locale = locale;
-	initialize(locale);
+    if (pattern == null || locale == null) {
+        throw new NullPointerException();
+    }
+    initializeCalendar(locale);
+    this.pattern = pattern;
+    this.formatData = DateFormatSymbols.getInstanceRef(locale);
+    this.locale = locale;
+    initialize(locale);
 }
 
 public SimpleDateFormat(String pattern, DateFormatSymbols formatSymbols)
 {
-	if (pattern == null || formatSymbols == null) {
-		throw new NullPointerException();
-	}
-	this.pattern = pattern;
-	this.formatData = (DateFormatSymbols) formatSymbols.clone();
-	this.locale = Locale.getDefault(Locale.Category.FORMAT);
-	initializeCalendar(this.locale);
-	initialize(this.locale);
-	useDateFormatSymbols = true;
+    if (pattern == null || formatSymbols == null) {
+        throw new NullPointerException();
+    }
+    this.pattern = pattern;
+    this.formatData = (DateFormatSymbols) formatSymbols.clone();
+    this.locale = Locale.getDefault(Locale.Category.FORMAT);
+    initializeCalendar(this.locale);
+    initialize(this.locale);
+    useDateFormatSymbols = true;
 }
 ```
 
@@ -515,9 +515,9 @@ String s = "2017#03#12#21#49#28";
 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy#MM#dd#HH#mm#ss");
 Date date = null;
 try {
-	date = simpleDateFormat.parse(s);
+    date = simpleDateFormat.parse(s);
 } catch (ParseException e) {
-	e.printStackTrace();
+    e.printStackTrace();
 }
 System.out.println(date);    // Sun Mar 12 21:49:28 CST 2017
 ```
