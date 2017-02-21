@@ -8,9 +8,9 @@ tags: Java
 
 # 目录
 1. [构造方法](#1)
-2. [set 和 get](#2)
-3. [add](#3)
-4. [remove](#4)
+2. [set 方法和 get 方法](#2)
+3. [add 方法](#3)
+4. [remove 方法](#4)
 5. [序列化](#5)
 6. [迭代器](#6)
 
@@ -53,8 +53,9 @@ public ArrayList(Collection<? extends E> c) {
     elementData = c.toArray();
     if ((size = elementData.length) != 0) {
         // c.toArray might (incorrectly) not return Object[] (see 6260652)
-        if (elementData.getClass() != Object[].class)
+        if (elementData.getClass() != Object[].class) {
             elementData = Arrays.copyOf(elementData, size, Object[].class);
+        }
     } else {
         // replace with empty array.
         this.elementData = EMPTY_ELEMENTDATA;
@@ -69,7 +70,7 @@ public ArrayList(Collection<? extends E> c) {
 > 
 > - ArrayList(Collection<? extends E> c) 构造一个包含指定 Collection 元素的列表，这些元素是按照该 Collection 的迭代器返回它们的顺序排列的。
 
-<h1 id="2">set 和 get</h1>
+<h1 id="2">set 方法和 get 方法</h1>
 
 `ArrayList` 的 `set` 方法非常简单，直接对 `Object[]` 数组的指定位置赋值即可。
 
@@ -96,7 +97,7 @@ E elementData(int index) {
 }
 ```
 
-<h1 id="3">add</h1>
+<h1 id="3">add 方法</h1>
 
 添加元素可能会导致容量 capacity 不足，因此在添加元素之前，都需要调用 `ensureCapacityInternal(int minCapacity)` 方法进行剩余空间检查，如果需要则自动扩容。扩容操作最终是通过 `grow(int minCapacity)` 方法完成的。
 
@@ -172,7 +173,7 @@ public boolean addAll(int index, Collection<? extends E> c) {
 
 与 `add` 方法类似，在插入之前也需要进行空间检查，如果需要则自动扩容；如果从指定位置插入，也会存在移动元素的情况。 `addAll` 方法的时间复杂度不仅跟插入元素的数量有关，也跟插入的位置有关。
 
-<h1 id="4">remove</h1>
+<h1 id="4">remove 方法</h1>
 
 > - remove(int index) 方法移除此列表中指定位置上的元素。
 > 
@@ -197,17 +198,19 @@ public E remove(int index) {
 
 public boolean remove(Object o) {
     if (o == null) {
-        for (int index = 0; index < size; index++)
+        for (int index = 0; index < size; index++) {
             if (elementData[index] == null) {
                 fastRemove(index);
                 return true;
             }
+        }
     } else {
-        for (int index = 0; index < size; index++)
+        for (int index = 0; index < size; index++) {
             if (o.equals(elementData[index])) {
                 fastRemove(index);
                 return true;
             }
+        }
     }
     return false;
 }
