@@ -15,7 +15,7 @@ tags: Java
     1. [add(E e) 方法](#3_1)
     2. [add(int index, E element) 方法](#3_2)
     3. [addAll 方法](#3_3)
-4. [remove](#4)
+4. [remove 方法](#4)
 5. [ArrayList 和 LinkedList](#5)
 
 `ArrayList` 作为动态数组的模拟，使用的是连续内存空间来存储数据，带来了可随机访问数据元素这一便利的同时，也有着插入和删除效率低下的缺点。对于插入和删除操作频率较高的场合，应该考虑使用`LinkedList` 。

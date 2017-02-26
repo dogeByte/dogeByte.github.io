@@ -23,3 +23,6 @@
 .post img {
   width : auto;
 }
+.post table {
+  font-size: .8em;
+}
