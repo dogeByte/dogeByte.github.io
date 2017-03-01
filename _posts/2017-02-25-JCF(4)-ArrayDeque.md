@@ -42,24 +42,24 @@ tags: Java
 </tr>
 <tr align="center">
 <td><b>插入</b></td>
-<td>addFirst(e)</td>
-<td>offerFirst(e)</td>
-<td>addLast(e)</td>
-<td>offerLast(e)</td>
+<td><a href="#4_1">addFirst(e)</a></td>
+<td><a href="#4_3">offerFirst(e)</a></td>
+<td><a href="#4_2">addLast(e)</a></td>
+<td><a href="#4_3">offerLast(e)</a></td>
 </tr>
 <tr align="center">
 <td><b>移除</b></td>
-<td>removeFirst()</td>
-<td>pollFirst()</td>
-<td>removeLast()</td>
-<td>pollLast()</td>
+<td><a href="#5_2">removeFirst()</a></td>
+<td><a href="#5_1">pollFirst()</a></td>
+<td><a href="#5_2">removeLast()</a></td>
+<td><a href="#5_1">pollLast()</a></td>
 </tr>
 <tr align="center">
 <td><b>检查</b></td>
-<td>getFirst()</td>
-<td>peekFirst()</td>
-<td>getLast()</td>
-<td>peekLast()</td>
+<td><a href="#6">getFirst()</a></td>
+<td><a href="#6">peekFirst()</a></td>
+<td><a href="#6">getLast()</a></td>
+<td><a href="#6">peekLast()</a></td>
 </tr>
 </table>
 </p>
@@ -75,32 +75,32 @@ tags: Java
 </tr>
 <tr align="center">
 <td>add(e)</td>
-<td>addLast(e)</td>
+<td><a href="#4_2">addLast(e)</a></td>
 <td>将指定元素插入此双端队列的末尾，失败则抛出异常</td>
 </tr>
 <tr align="center">
 <td>offer(e)</td>
-<td>offerLast(e)</td>
+<td><a href="#4_3">offerLast(e)</a></td>
 <td>将指定元素插入此双端队列的末尾，失败则返回 false</td>
 </tr>
 <tr align="center">
 <td>remove()</td>
-<td>removeFirst()</td>
+<td><a href="#5_2">removeFirst()</a></td>
 <td>获取并移除此双端队列的第一个元素，如果此双端队列为空，则抛出 NoSuchElementException</td>
 </tr>
 <tr align="center">
 <td>poll()</td>
-<td>pollFirst()</td>
+<td><a href="#5_1">pollFirst()</a></td>
 <td>获取并移除此双端队列的第一个元素，如果此双端队列为空，则返回 null</td>
 </tr>
 <tr align="center">
 <td>element()</td>
-<td>getFirst()</td>
+<td><a href="#6">getFirst()</a></td>
 <td>获取但不移除此双端队列的第一个元素，如果此双端队列为空，则抛出 NoSuchElementException</td>
 </tr>
 <tr align="center">
 <td>peek()</td>
-<td>peekFirst()</td>
+<td><a href="#6">peekFirst()</a></td>
 <td>获取但不移除此双端队列的第一个元素，如果此双端队列为空，则返回 null</td>
 </tr>
 </table>
@@ -117,32 +117,32 @@ tags: Java
 </tr>
 <tr align="center">
 <td>push(e)</td>
-<td>addFirst(e)</td>
+<td><a href="#4_1">addFirst(e)</a></td>
 <td>将指定元素插入此双端队列的开头，失败则抛出异常</td>
 </tr>
 <tr align="center">
 <td>无</td>
-<td>offerFirst(e)</td>
+<td><a href="#4_3">offerFirst(e)</a></td>
 <td>将指定元素插入此双端队列的开头，失败则返回 false</td>
 </tr>
 <tr align="center">
 <td>pop()</td>
-<td>removeFirst()</td>
+<td><a href="#5_2">removeFirst()</a></td>
 <td>获取并移除此双端队列的第一个元素，如果此双端队列为空，则抛出 NoSuchElementException</td>
 </tr>
 <tr align="center">
 <td>无</td>
-<td>pollFirst()</td>
+<td><a href="#5_1">pollFirst()</a></td>
 <td>获取并移除此双端队列的第一个元素，如果此双端队列为空，则返回 null</td>
 </tr>
 <tr align="center">
 <td>无</td>
-<td>getFirst()</td>
+<td><a href="#6">getFirst()</a></td>
 <td>获取但不移除此双端队列的第一个元素，如果此双端队列为空，则抛出  NoSuchElementException</td>
 </tr>
 <tr align="center">
 <td>peek()</td>
-<td>peekFirst()</td>
+<td><a href="#6">peekFirst()</a></td>
 <td>获取但不移除此双端队列的第一个元素，如果此双端队列为空，则返回 null</td>
 </tr>
 </table>
