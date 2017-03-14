@@ -155,7 +155,7 @@ System.out.println(time4);                      // 12:00
 
 `LocalDate` 提供了大量的方法来进行日期信息的获取和计算，主要可以分为四类：获取日期信息，修改日期信息，加减法运算和日期对象间的比较。
 
-<table>
+<table border="1">
 <thead>
 <tr>
 <th>方法名</th>
@@ -337,7 +337,7 @@ System.out.println(time);        // 22:18:33.816
 
 <h1 id="3">解析和格式化</h1>
 
-在 JDK 7 的时代，想要格式化一个日期，只能用 `Date` 类，并且 `SimpleDateFormat` 类还存在这线程安全隐患，而在 JDK 8 中，这些问题都不复存在了。
+在 JDK 7 的时代，想要格式化一个日期，只能用 `Date` 类，并且 `SimpleDateFormat` 类还存在线程安全隐患，而在 JDK 8 中，这些问题都不复存在了。
 
 ```java
 LocalDate date = LocalDate.parse("2017-03-13");
@@ -365,3 +365,68 @@ System.out.println(dateTime.format(formatter));    // 2017/03/13 22:40:52
 ```
 
 <h1 id="4">调节器</h1>
+
+<h3 id="4_1">TemporalAdjusters</h3>
+
+新版日期和时间的处理方法，与以前使用的 `Date` 和 `Calendar` 类最明显的区别就是调节器了。
+
+```java
+LocalDate date = LocalDate.now();
+System.out.println("今天是 " + date + " " + date.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.getDefault()));    // 今天是 2017-03-14 星期二
+System.out.println("下周二是 " + date.with(TemporalAdjusters.next(DayOfWeek.TUESDAY)));    // 下周二是 2017-03-21
+System.out.println("本月的第一个周二是 " + date.with(TemporalAdjusters.firstInMonth(DayOfWeek.TUESDAY)));    // 本月的第一个周二是 2017-03-07
+```
+
+得到 `LocalDate` 对象后，调用 `with()` 方法，传入一个 `TemporalAdjusters` 对象即可。 `TemporalAdjusters` 类有许多静态方法来创建该对象：
+
+> firstDayOfMonth()
+> 
+> lastDayOfMonth()
+> 
+> firstDayOfNextMonth()
+> 
+> firstDayOfYear()
+> 
+> lastDayOfYear()
+> 
+> firstDayOfNextYear()
+> 
+> firstInMonth(DayOfWeek dayOfWeek)
+> 
+> lastInMonth(DayOfWeek dayOfWeek)
+> 
+> dayOfWeekInMonth(int ordinal, DayOfWeek dayOfWeek)
+> 
+> next(DayOfWeek dayOfWeek)
+> 
+> nextOrSame(DayOfWeek dayOfWeek)
+> 
+> previous(DayOfWeek dayOfWeek)
+> 
+> previousOrSame(DayOfWeek dayOfWeek)
+
+如果这些方法不能满足需求，就需要自定义调节器了。
+
+<h3 id="4_2">自定义调节器</h3>
+
+自定义一个调节器很简单，创建一个类，实现 `TemporalAdjuster` 接口，重写 `adjustInto(Temporal temporal)` 方法。
+
+假设一个场景，一个公司每个月清账两次，分别是本月 15 号和最后一天。如果恰逢周末，则提前到周五清帐。如何自定义一个调节器，计算下一次清帐时间呢？
+
+```java
+LocalDate date = LocalDate.of(2016, Month.DECEMBER, 20).with(new TemporalAdjuster() {
+	@Override
+	public Temporal adjustInto(Temporal temporal) {
+		LocalDate date = LocalDate.from(temporal);
+		int day = date.getDayOfMonth() < 15 ? 15 : date.lengthOfMonth();
+		date = date.withDayOfMonth(day);
+		if (DayOfWeek.SATURDAY.equals(date.getDayOfWeek()) || DayOfWeek.SUNDAY.equals(date.getDayOfWeek())) {
+			date = date.with(TemporalAdjusters.previous(DayOfWeek.FRIDAY));
+		}
+		return temporal.with(date);
+	}
+});
+System.out.println(date);
+```
+
+输出为 `2016-12-30` ， 2016年12月31日是周六，所以清账日期提前至30号。
