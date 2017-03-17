@@ -22,7 +22,7 @@ tags: Java
 
 `LinkedList` 同时实现了 `List` 接口和 `Deque` 接口，也就是说它既可以看作一个顺序容器，又可以看作一个队列（`Queue`），同时又可以看作一个栈（`Stack`）。
 
-`LinkedList` 底层通过双向链表实现，每个节点用内部类 `Node` 表示。`LinkedList` 中 `Node` 的实例对象 `first` 和 `last` 引用分别指向链表的第一个和最后一个元素。注意 `LinkedList` 中没有哑元，当链表为空的时候 `first` 和 `last` 都指向 `null`。
+`LinkedList` 底层通过双向链表实现，允许放入 `null` 元素，每个节点用内部类 `Node` 表示。`LinkedList` 中 `Node` 的实例对象 `first` 和 `last` 引用分别指向链表的第一个和最后一个元素。注意 `LinkedList` 中没有哑元，当链表为空的时候 `first` 和 `last` 都指向 `null`。
 
 ```java
 private static class Node<E> {

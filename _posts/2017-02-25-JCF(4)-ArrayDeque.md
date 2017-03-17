@@ -166,7 +166,7 @@ transient int head;
 transient int tail;
 ```
 
-![循环数组](https://s25.postimg.org/6vcxrk31r/JCF04-01.png)
+<img alt="循环数组" src="https://s25.postimg.org/6vcxrk31r/JCF04-01.png" style="width:100%;"/>
 
 `head` 指向队列的第一个有效元素，`tail` 指向尾端第一个可以插入元素的空位。因为 `Object[]` 是循环数组，所以 `head` 不一定总等于 0，`tail` 也不一定总是比 `head` 大。
 
@@ -248,7 +248,7 @@ private void allocateElements(int numElements) {
 
 `addFirst(E e)` 的作用将指定元素插入此双端队列的开头，也就是在 `head` 的前面插入元素，在空间足够且下标没有越界的情况下，只需要 `elements[--head] = e;` 即可。
 
-![addFirst(E e)](https://s25.postimg.org/ifycklmcv/JCF04-02.png)
+<img alt="addFirst(E e)" src="https://s25.postimg.org/ifycklmcv/JCF04-02.png" style="width:100%;"/>
 
 实际上还需要考虑空间是否够用以及下标是否越界的问题。如果　`head` 为 0 之后接着调用 `addFirst(E e)`，虽然空间足够，但 `head` 为 -1，下标越界了。
 
@@ -289,7 +289,7 @@ private void doubleCapacity() {
 
 扩容方法 `doubleCapacity()` 的逻辑是申请一个新的数组，大小为原数组的两倍，将原数组复制到新数组中。复制分两次进行，第一次复制 `head` 右边的元素，第二次复制 `head` 左边的元素。
 
-![doubleCapacity()](https://s25.postimg.org/5d2q1bw4v/JCF04-03.png)
+<img alt="doubleCapacity()" src="https://s25.postimg.org/5d2q1bw4v/JCF04-03.png" style="width:100%;"/>
 
 <h3 id="4_2">addlast(E e)</h3>
 

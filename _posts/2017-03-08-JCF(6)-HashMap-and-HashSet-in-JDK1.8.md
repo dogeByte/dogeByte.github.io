@@ -16,7 +16,8 @@ tags: Java
 4. [put 方法](#4)
 	1. [put(K key, V value)](#4_1)
 	2. [resize()](#4_2)
-5. [HashSet](#5)
+5. [remove 方法](#5)
+6. [HashSet](#6)
 
 同 `TreeMap` 和 `TreeSet` 一样，`HashMap` 和 `HashSet` 在 Java 里也有着相同的实现，后者仅仅是对前者做了一层包装，也就是说 `HashSet` 内部维护着一个 `HashMap`。
 
@@ -438,7 +439,59 @@ xxxx xxxx xxxx xxxx xxxx xxxx xx<span style="background:#99CC99;"><font color="r
 
 于是，在 JDK 1.8 中，`resize()` 方法在复制原数组的每一个桶时，如果桶中只有一个元素，则直接根据 key.hash 计算它在新数组中的位置；如果桶中是链表，则不再重新计算桶中各个元素在新数组中的位置，而是判断新的索引值属于上述两种情形中的哪一种，将两种不同的索引值分别放到两个桶中并存入新数组；如果桶中是红黑树，复制的过程与链表类似，只是增加了对红黑树的修复过程。
 
-<h1 id="5">HashSet</h1>
+<h1 id="5">remove 方法</h1>
+
+```java
+public V remove(Object key) {
+    Node<K,V> e;
+    return (e = removeNode(hash(key), key, null, false, true)) == null ?
+        null : e.value;
+}
+
+final Node<K,V> removeNode(int hash, Object key, Object value,
+                           boolean matchValue, boolean movable) {
+    Node<K,V>[] tab; Node<K,V> p; int n, index;
+    if ((tab = table) != null && (n = tab.length) > 0 &&
+        (p = tab[index = (n - 1) & hash]) != null) {
+        Node<K,V> node = null, e; K k; V v;
+        if (p.hash == hash &&
+            ((k = p.key) == key || (key != null && key.equals(k)))) {
+            node = p;
+        } else if ((e = p.next) != null) {
+            if (p instanceof TreeNode) {
+                node = ((TreeNode<K,V>)p).getTreeNode(hash, key);
+            } else {
+                do {
+                    if (e.hash == hash &&
+                        ((k = e.key) == key ||
+                         (key != null && key.equals(k)))) {
+                        node = e;
+                        break;
+                    }
+                    p = e;
+                } while ((e = e.next) != null);
+            }
+        }
+        if (node != null && (!matchValue || (v = node.value) == value ||
+                             (value != null && value.equals(v)))) {
+            if (node instanceof TreeNode) {
+                ((TreeNode<K,V>)node).removeTreeNode(this, tab, movable);
+            } else if (node == p) {
+                tab[index] = node.next;
+            } else {
+                p.next = node.next;
+            }
+            ++modCount;
+            --size;
+            afterNodeRemoval(node);
+            return node;
+        }
+    }
+    return null;
+}
+```
+
+<h1 id="6">HashSet</h1>
 
 同 `TreeMap` 和 `TreeSet` 一样，`HashSet` 也是对 `HashMap` 的简单包装，对 `HashSet` 的函数调用都会转换成合适的 `HashMap` 中的方法，因此 `HashSet` 的实现逻辑也非常简单。
 
