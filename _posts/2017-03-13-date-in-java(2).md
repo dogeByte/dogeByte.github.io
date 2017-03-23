@@ -12,9 +12,11 @@ tags: Java
 	2. [DayOfWeek](#1_2)
 2. [日期和时间](#2)
 	1. [LocalDate 和 LocalTime](#2_1)
-	2. [get() 方法](#2_2)
+	2. [LocalDateTime](#2_2)
 3. [解析和格式化](#3)
 4. [调节器](#4)
+	1. [TemporalAdjusters](#4_1)
+	2. [自定义调节器](#4_2)
 
 [上集]()简单介绍了 Java 中的 `Date` 类， `Calendar` 类以及用于格式化的 `SimpleDateFormater` 类。使用这些类的时候我们会明显地感受到其中的不便之处，比如 `Calendar` 类的月份是从 0 开始计数的；日期格式输出不够友好，都需要使用 `SimpleDateFormater` 类来格式化；一些简单的日期计算也比较麻烦等等。所以就有了 joda-time 这种第三方库来简化 Java 对于日期和时间的操作。为了改变这种情况， jdk 8 中对日期和时间对处理就吸收了 joda-time 库的特性。
 

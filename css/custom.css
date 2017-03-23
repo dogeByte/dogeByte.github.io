@@ -2,7 +2,10 @@
   text-shadow: none;
 }
 .post code {
-  font-size: .6em;
+  font-size: .8em;
+}
+.post :not(pre) > code {
+  font-size: 1em;
 }
 .post pre {
   line-height: 1.1;

@@ -69,31 +69,31 @@
   color: rgb(128,128,255);
 }
 .highlight .mf {
-  color: #ae81ff;
+  color: rgb(255,0,128);
 }
 .highlight .mh {
-  color: #ae81ff;
+  color: rgb(255,0,128);
 }
 .highlight .il {
-  color: #ae81ff;
+  color: rgb(255,0,128);
 }
 .highlight .mi {
-  color: #ae81ff;
+  color: rgb(255,0,128);
 }
 .highlight .mo {
-  color: #ae81ff;
+  color: rgb(255,0,128);
 }
 .highlight .m, .highlight .mb, .highlight .mx {
-  color: #ae81ff;
+  color: rgb(255,0,128);
 }
 .highlight .sc {
-  color: #ae81ff;
+  color: rgb(255,0,128);
 }
 .highlight .se {
-  color: #ae81ff;
+  color: rgb(255,0,128);
 }
 .highlight .ss {
-  color: #ae81ff;
+  color: rgb(255,0,128);
 }
 .highlight .sd {
   color: rgb(255,128,0);
@@ -120,16 +120,16 @@
   color: rgb(255,128,0);
 }
 .highlight .na {
-  color: #a6e22e;
+  color: rgb(128,255,128);
 }
 .highlight .nc {
-  color: #a6e22e;
+  color: rgb(128,255,128);
 }
 .highlight .nd {
   color: rgb(0,255,255);
 }
 .highlight .ne {
-  color: #a6e22e;
+  color: rgb(128,255,128);
 }
 .highlight .nf {
   color: rgb(128,255,128);
