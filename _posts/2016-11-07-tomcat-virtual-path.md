@@ -22,7 +22,7 @@ Tomcat 的加载 web 项目的顺序是先加载 `C:/tomcat/conf/Catalina/localh
 
 <h3 id="1_1">方法一</h3>
 
- `C:/tomcat/Catalina/localhost` 目录下新建 xml 文件，文件名与项目名相同，即 `myProject.xml`，文件内容如下：
+ `C:/tomcat/conf/Catalina/localhost` 目录下新建 xml 文件，文件名与项目名相同，即 `myProject.xml`，文件内容如下：
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -47,6 +47,32 @@ Tomcat 的加载 web 项目的顺序是先加载 `C:/tomcat/conf/Catalina/localh
 注意，此时的 `path` 属性不可省略。
 
 通过上述两种配置方式，我们就可以通过 `http://localhost:8080/myProject` 对此 web 项目进行访问。如果将 `C:/tomcat/conf/server.xml` 中 `<Connector>` 标签的 `port` 属性值修改为 `80`，则可以省略访问路径中的端口号，即 `http://localhost/myProject`。
+
+如果配置没有错却出现404的错误，可能是在 `C:/tomcat/conf/web.xml` 文件中禁止了虚拟路径显示目录，此时可以在 `web.xml` 文件中找到
+
+```xml
+<servlet>
+    <servlet-name>default</servlet-name>
+    <servlet-class>org.apache.catalina.servlets.DefaultServlet</servlet-class>
+    <init-param>
+        <param-name>debug</param-name>
+        <param-value>0</param-value>
+    </init-param>
+    <init-param>
+        <param-name>listings</param-name>
+        <param-value>false</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+    </servlet>
+```
+
+将 listings 的 value 改为 true ，然后重新启动 Tomcat 即可。
+
+如果使用startup.bat启动Tomcat可以访问虚拟路径，而在eclipse中启动无法访问，是因为还需要对eclipse中的服务器进行配置：
+
+![eclipse中的Tomcat配置](https://s25.postimg.org/i12p2b0bz/eclipse_tomcat_conf.png)
+
+![添加外部web模块](https://s25.postimg.org/7fitqau0f/eclipse_tomcat_conf2.png)
 
 <h1 id="2">主目录配置</h1>
 
