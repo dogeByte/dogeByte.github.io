@@ -1,5 +1,6 @@
 .post {
   text-shadow: none;
+  font-family: Monaco, "Courier New", "Microsoft YaHei";
 }
 .post code {
   font-size: .8em;

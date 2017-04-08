@@ -72,31 +72,17 @@ public Date(int year, int month, int date, int hrs, int min, int sec) {
 ```java
 public static void main(String[] args) {
     Date date = new Date();
-    System.out.println(date.getTime());
-    System.out.println(date.toString());
+    System.out.println(date.getTime());     // 1489320281826
+    System.out.println(date.toString());    // Sun Mar 12 20:04:41 CST 2017
 }
-```
-
-输出结果为：
-
-```
-1489320281826
-Sun Mar 12 20:04:41 CST 2017
 ```
 
 而第二个构造方法的参数 `date` ，表示创建的 `Date` 对象与 GMT 1970年1月1日 00:00:00 的时间差。
 
 ```java
 Date date = new Date(60 * 60 * 1000);
-System.out.println(date.getTime());
-System.out.println(date.toString());
-```
-
-输出结果为：
-
-```
-36000000
-Thu Jan 01 09:00:00 CST 1970
+System.out.println(date.getTime());     // 36000000
+System.out.println(date.toString());    // Thu Jan 01 09:00:00 CST 1970
 ```
 
 为什么不是 1 点呢？原因在于 CST ( China Standard Time ) 是指的北京时间，而 GMT ( Greenwich Mean Time )是指的是格林尼治标准时间。由于北京处于东八区，比 GMT 早8小时，所以打印的时间指的是北京时间 1970 年 1 月 1 日上午 9 点。
@@ -105,21 +91,13 @@ Thu Jan 01 09:00:00 CST 1970
 
 谈完了构造方法，下面说说 `Date` 这个古老的类中可以使用的方法。
 
-> public long getTime()
+> public long getTime() ：返回从 GMT 1970年1月1日 00:00:00 到这个类创建的毫秒数。
 > 
-> 这个方法之前我们已经用到了，它返回的是从GMT 1970年1月1日 00:00:00到这个类创建的毫秒数。
+> public void setTime(long time) ：设置该 Date 对象的时间。参数 time 表示从 GMT 1970年1月1日 00:00:00 后的毫秒数。
 > 
-> public void setTime(long time)
+> public boolean after(Date when) ：测试该日期是否是在指定的日期之后。
 > 
-> 设置该Date对象的时间。参数time表示从GMT 1970年1月1日 00:00:00后的毫秒数。
-> 
-> public boolean after(Date when)
-> 
-> 测试该日期是否是在指定的日期之后。
-> 
-> public boolean before(Date when)
-> 
-> 测试该日期是否是在指定的日期之前。
+> public boolean before(Date when) ：测试该日期是否是在指定的日期之前。
 
 `Date` 类中的构造方法和常用的未过时的方法基本就是这些了。看了之后是不是觉得其实 `Date` 类能用的东西很少？很多日期和时间的操作都很难实现，这时候就要使用到 `Calendar` 类，或者使用 JDK 8 中的日期时间包。
 
@@ -153,7 +131,7 @@ public static Calendar getInstance(TimeZone zone, Locale aLocale) {
 
 <h3 id="2_2">get() 方法</h3>
 
-`Date` 对象可以通过 `getTime()` 方法和 `toString()` 方法，能很容易的取到对应的时间信息。而在 `Calendar` 对象中，获取到时间和日期并不这么直接。在 `Calendar` 对象中， `getTime()` 方法返回的是一个 `Date` 对象，至于 `toString()` 方法的输出……
+`Date` 对象可以通过 `getTime()` 方法和 `toString()` 方法，能很容易的取到对应的时间信息。而在 `Calendar` 对象中，获取到时间和日期并不这么直接。在 `Calendar` 对象中， `getTime()` 方法返回的是一个 `Date` 对象，至于 `toString()` 方法的输出结果……
 
 ```
 java.util.GregorianCalendar[time=1489323573250,areFieldsSet=true,areAllFieldsSet=true,lenient=true,zone=sun.util.calendar.ZoneInfo[id="Asia/Shanghai",offset=28800000,dstSavings=0,useDaylight=false,transitions=19,lastRule=null],firstDayOfWeek=1,minimalDaysI
@@ -201,11 +179,11 @@ public static final int DST_OFFSET = 16;
 `get()` 方法中的参数就是上述 18 个常量之一。其中：
 
 
-> `ERA` 表示该日期是在公元元年之前还是之后，返回 0 表示在公元元年之前，返回 1 表示在公元元年之后。
+> ERA 表示该日期是在公元元年之前还是之后，返回 0 表示在公元元年之前，返回 1 表示在公元元年之后。
 > 
-> `AM_PM` 表示该时间是在中午 12 点之前还是之后，返回 0 表示在中午 12 点之前，返回 1 表示在中午 12 点之后。
+> AM_PM 表示该时间是在中午 12 点之前还是之后，返回 0 表示在中午 12 点之前，返回 1 表示在中午 12 点之后。
 > 
-> `DST_OFFSET` 表示该时间距夏令时的毫秒数。
+> DST_OFFSET 表示该时间距夏令时的毫秒数。
 
 <h3 id="2_3">set() 方法</h3>
 
@@ -258,21 +236,12 @@ public final void set(int year, int month, int date, int hourOfDay, int minute, 
 ```java
 Calendar calendar = Calendar.getInstance();
 calendar.set(Calendar.MONTH, 3);
-System.out.println(calendar.get(Calendar.MONTH));
+System.out.println(calendar.get(Calendar.MONTH));           // 3
 calendar.set(2017, Calendar.MARCH, 12);
-System.out.println(calendar.get(Calendar.YEAR));
-System.out.println(calendar.get(Calendar.MONTH));
-System.out.println(calendar.get(Calendar.DAY_OF_MONTH));
+System.out.println(calendar.get(Calendar.YEAR));            // 2017
+System.out.println(calendar.get(Calendar.MONTH));           // 2
+System.out.println(calendar.get(Calendar.DAY_OF_MONTH));    // 12
 }
-```
-
-输出结果为：
-
-```
-3
-2017
-2
-12
 ```
 
 由于月份是从 0 开始计数的，所以计算月份的时候需要特别小心。这就是 `Calendar` 反人类的地方之一。
@@ -297,15 +266,8 @@ System.out.println(calendar.get(Calendar.DAY_OF_MONTH));
 
 ```java
 Calendar calendar = Calendar.getInstance();
-System.out.println(calendar.getMinimum(Calendar.DAY_OF_MONTH));
-System.out.println(calendar.getMaximum(Calendar.DAY_OF_MONTH));
-```
-
-输出结果为：
-
-```
-1
-31
+System.out.println(calendar.getMinimum(Calendar.DAY_OF_MONTH));    // 1
+System.out.println(calendar.getMaximum(Calendar.DAY_OF_MONTH));    // 31
 ```
 
 `getActualMaximum(int field)` 和 `getActualMinimum(int field)` 两个方法同上面两个方法相比，多了一个 Actual 单词，表示返回 `Calendar` 对象的 `fields` 数组中，在当前日期的环境条件下，对应数据的最大值和最小值。例如：
@@ -313,15 +275,8 @@ System.out.println(calendar.getMaximum(Calendar.DAY_OF_MONTH));
 ```java
 Calendar calendar = Calendar.getInstance();
 calendar.set(Calendar.MONTH, 1);
-System.out.println(calendar.getMinimum(Calendar.DAY_OF_MONTH));
-System.out.println(calendar.getMaximum(Calendar.DAY_OF_MONTH));
-```
-
-输出结果为：
-
-```
-1
-28
+System.out.println(calendar.getMinimum(Calendar.DAY_OF_MONTH));    // 1
+System.out.println(calendar.getMaximum(Calendar.DAY_OF_MONTH));    // 28
 ```
 
 注意，这里设置的是二月。 `fields` 数组中的各个字段的最大值和最小值如下：
@@ -370,7 +325,6 @@ public SimpleDateFormat(String pattern, Locale locale)
 	if (pattern == null || locale == null) {
 		throw new NullPointerException();
 	}
-
 	initializeCalendar(locale);
 	this.pattern = pattern;
 	this.formatData = DateFormatSymbols.getInstanceRef(locale);
@@ -383,7 +337,6 @@ public SimpleDateFormat(String pattern, DateFormatSymbols formatSymbols)
 	if (pattern == null || formatSymbols == null) {
 		throw new NullPointerException();
 	}
-
 	this.pattern = pattern;
 	this.formatData = (DateFormatSymbols) formatSymbols.clone();
 	this.locale = Locale.getDefault(Locale.Category.FORMAT);
@@ -398,13 +351,7 @@ public SimpleDateFormat(String pattern, DateFormatSymbols formatSymbols)
 ```java
 String pattern = "yyyy/MM/dd HH:mm:ss";
 SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-System.out.println(simpleDateFormat.format(new Date()));
-```
-
-输出结果为：
-
-```
-2017/03/12 21:43:59
+System.out.println(simpleDateFormat.format(new Date()));    // 2017/03/12 21:43:59
 ```
 
 `pattern` 中的字符含义如下表，注意区分大小写：
@@ -571,13 +518,7 @@ try {
 } catch (ParseException e) {
 	e.printStackTrace();
 }
-System.out.println(date);
-```
-
-输出结果为：
-
-```
-Sun Mar 12 21:49:28 CST 2017
+System.out.println(date);    // Sun Mar 12 21:49:28 CST 2017
 ```
 
 注意，数据之间需要用 `#` 来分割。
