@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Java 中的日期和时间 ( 下 ) "
+title:  "Java 中的日期和时间（下）"
 date:   2017-03-13 08:07:01
 categories: Java
 tags: Java
@@ -18,7 +18,7 @@ tags: Java
 	1. [TemporalAdjusters](#4_1)
 	2. [自定义调节器](#4_2)
 
-[上集]()简单介绍了 Java 中的 `Date` 类， `Calendar` 类以及用于格式化的 `SimpleDateFormater` 类。使用这些类的时候我们会明显地感受到其中的不便之处，比如 `Calendar` 类的月份是从 0 开始计数的；日期格式输出不够友好，都需要使用 `SimpleDateFormater` 类来格式化；一些简单的日期计算也比较麻烦等等。所以就有了 joda-time 这种第三方库来简化 Java 对于日期和时间的操作。为了改变这种情况， jdk 8 中对日期和时间对处理就吸收了 joda-time 库的特性。
+[上集](https://dogebyte.github.io/java/2017/03/12/date-in-java(1).html)简单介绍了 Java 中的 `Date` 类， `Calendar` 类以及用于格式化的 `SimpleDateFormater` 类。使用这些类的时候我们会明显地感受到其中的不便之处，比如 `Calendar` 类的月份是从 0 开始计数的；日期格式输出不够友好，都需要使用 `SimpleDateFormater` 类来格式化；一些简单的日期计算也比较麻烦等等。所以就有了 joda-time 这种第三方库来简化 Java 对于日期和时间的操作。为了改变这种情况， jdk 8 中对日期和时间对处理就吸收了 joda-time 库的特性。
 
 <h1 id="1">枚举类 Month 和 DayOfWeek</h1>
 
@@ -128,11 +128,11 @@ System.out.println(dayOfWeek.getDisplayName(TextStyle.NARROW, Locale.ENGLISH)); 
 
 <h1 id="2">日期时间</h1>
 
-> `LocalDate` 类可以获取当前日期（不包含时间），并可以进行相应处理。
+> - `LocalDate` 类可以获取当前日期（不包含时间），并可以进行相应处理。
 > 
-> `LocalTime` 类可以获取当前时间（不包含日期），并可以进行相应处理。
+> - `LocalTime` 类可以获取当前时间（不包含日期），并可以进行相应处理。
 > 
-> `LocalDateTime` 类可以同时处理日期和时间。
+> - `LocalDateTime` 类可以同时处理日期和时间。
 
 <h3 id="2_1">LocalDate 和 LocalTime</h3>
 
@@ -142,17 +142,17 @@ System.out.println(dayOfWeek.getDisplayName(TextStyle.NARROW, Locale.ENGLISH)); 
 LocalDatedate1 = LocalDate.now();
 LocalDatedate2 = LocalDate.of(2017, 1, 1);
 LocalDatedate3 = LocalDate.ofEpochDay(364);
-System.out.println(date1);                      // 2017-03-13
-System.out.println(date2);                      // 2017-01-01
-System.out.println(date3);                      // 1970-12-31
+System.out.println(date1);    // 2017-03-13
+System.out.println(date2);    // 2017-01-01
+System.out.println(date3);    // 1970-12-31
 LocalTimetime1 = LocalTime.now();
 LocalTimetime2 = LocalTime.now().withNano(0);
 LocalTimetime3 = LocalTime.of(23, 59);
 LocalTimetime4 = LocalTime.ofSecondOfDay(12 * 60 * 60);
-System.out.println(time1);                      // 21:52:22.719
-System.out.println(time2);                      // 21:52:22
-System.out.println(time3);                      // 23：59
-System.out.println(time4);                      // 12:00
+System.out.println(time1);    // 21:52:22.719
+System.out.println(time2);    // 21:52:22
+System.out.println(time3);    // 23：59
+System.out.println(time4);    // 12:00
 ```
 
 `LocalDate` 提供了大量的方法来进行日期信息的获取和计算，主要可以分为四类：获取日期信息，修改日期信息，加减法运算和日期对象间的比较。
@@ -381,31 +381,31 @@ System.out.println("本月的第一个周二是 " + date.with(TemporalAdjusters.
 
 得到 `LocalDate` 对象后，调用 `with()` 方法，传入一个 `TemporalAdjusters` 对象即可。 `TemporalAdjusters` 类有许多静态方法来创建该对象：
 
-> firstDayOfMonth()
+> - firstDayOfMonth()
 > 
-> lastDayOfMonth()
+> - lastDayOfMonth()
 > 
-> firstDayOfNextMonth()
+> - firstDayOfNextMonth()
 > 
-> firstDayOfYear()
+> - firstDayOfYear()
 > 
-> lastDayOfYear()
+> - lastDayOfYear()
 > 
-> firstDayOfNextYear()
+> - firstDayOfNextYear()
 > 
-> firstInMonth(DayOfWeek dayOfWeek)
+> - firstInMonth(DayOfWeek dayOfWeek)
 > 
-> lastInMonth(DayOfWeek dayOfWeek)
+> - lastInMonth(DayOfWeek dayOfWeek)
 > 
-> dayOfWeekInMonth(int ordinal, DayOfWeek dayOfWeek)
+> - dayOfWeekInMonth(int ordinal, DayOfWeek dayOfWeek)
 > 
-> next(DayOfWeek dayOfWeek)
+> - next(DayOfWeek dayOfWeek)
 > 
-> nextOrSame(DayOfWeek dayOfWeek)
+> - nextOrSame(DayOfWeek dayOfWeek)
 > 
-> previous(DayOfWeek dayOfWeek)
+> - previous(DayOfWeek dayOfWeek)
 > 
-> previousOrSame(DayOfWeek dayOfWeek)
+> - previousOrSame(DayOfWeek dayOfWeek)
 
 如果这些方法不能满足需求，就需要自定义调节器了。
 
@@ -428,7 +428,7 @@ LocalDate date = LocalDate.of(2016, Month.DECEMBER, 20).with(new TemporalAdjuste
 		return temporal.with(date);
 	}
 });
-System.out.println(date);
+System.out.println(date);    // 2016-12-30
 ```
 
-输出为 `2016-12-30` ， 2016年12月31日是周六，所以清账日期提前至30号。
+2016年12月31日是周六，所以清账日期提前至周五。

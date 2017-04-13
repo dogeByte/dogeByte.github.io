@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Java 中的日期和时间 ( 上 ) "
+title:  "Java 中的日期和时间（上）"
 date:   2017-03-12 17:19:32
 categories: Java
 tags: Java
@@ -85,19 +85,19 @@ System.out.println(date.getTime());     // 36000000
 System.out.println(date.toString());    // Thu Jan 01 09:00:00 CST 1970
 ```
 
-为什么不是 1 点呢？原因在于 CST ( China Standard Time ) 是指的北京时间，而 GMT ( Greenwich Mean Time )是指的是格林尼治标准时间。由于北京处于东八区，比 GMT 早8小时，所以打印的时间指的是北京时间 1970 年 1 月 1 日上午 9 点。
+为什么不是 1 点呢？原因在于 CST（China Standard Time）是指的北京时间，而 GMT（Greenwich Mean Time）是指的是格林尼治标准时间。由于北京处于东八区，比 GMT 早8小时，所以打印的时间指的是北京时间 1970 年 1 月 1 日上午 9 点。
 
 <h3 id="1_2">其它常用方法</h3>
 
 谈完了构造方法，下面说说 `Date` 这个古老的类中可以使用的方法。
 
-> public long getTime() ：返回从 GMT 1970年1月1日 00:00:00 到这个类创建的毫秒数。
+> - public long getTime() ：返回从 GMT 1970年1月1日 00:00:00 到这个类创建的毫秒数。
 > 
-> public void setTime(long time) ：设置该 Date 对象的时间。参数 time 表示从 GMT 1970年1月1日 00:00:00 后的毫秒数。
+> - public void setTime(long time) ：设置该 Date 对象的时间。参数 time 表示从 GMT 1970年1月1日 00:00:00 后的毫秒数。
 > 
-> public boolean after(Date when) ：测试该日期是否是在指定的日期之后。
+> - public boolean after(Date when) ：测试该日期是否是在指定的日期之后。
 > 
-> public boolean before(Date when) ：测试该日期是否是在指定的日期之前。
+> - public boolean before(Date when) ：测试该日期是否是在指定的日期之前。
 
 `Date` 类中的构造方法和常用的未过时的方法基本就是这些了。看了之后是不是觉得其实 `Date` 类能用的东西很少？很多日期和时间的操作都很难实现，这时候就要使用到 `Calendar` 类，或者使用 JDK 8 中的日期时间包。
 
@@ -179,11 +179,11 @@ public static final int DST_OFFSET = 16;
 `get()` 方法中的参数就是上述 18 个常量之一。其中：
 
 
-> ERA 表示该日期是在公元元年之前还是之后，返回 0 表示在公元元年之前，返回 1 表示在公元元年之后。
+> - ERA 表示该日期是在公元元年之前还是之后，返回 0 表示在公元元年之前，返回 1 表示在公元元年之后。
 > 
-> AM_PM 表示该时间是在中午 12 点之前还是之后，返回 0 表示在中午 12 点之前，返回 1 表示在中午 12 点之后。
+> - AM_PM 表示该时间是在中午 12 点之前还是之后，返回 0 表示在中午 12 点之前，返回 1 表示在中午 12 点之后。
 > 
-> DST_OFFSET 表示该时间距夏令时的毫秒数。
+> - DST_OFFSET 表示该时间距夏令时的毫秒数。
 
 <h3 id="2_3">set() 方法</h3>
 
@@ -252,11 +252,11 @@ System.out.println(calendar.get(Calendar.DAY_OF_MONTH));    // 12
 
 `add(int field, int amount)` 方法接受两个参数，第一个参数表示希望改变的字段，这个字段是 `fields` 数组中的某一个，第二个参数是改变的值。使用 `add()` 方法需要注意几点：
 
-> 月份是从 0 开始计数的。
+> - 月份是从 0 开始计数的。
 > 
-> 第二个参数如果为正，则数据增加；如果为负，则数据减少。
+> - 第二个参数如果为正，则数据增加；如果为负，则数据减少。
 > 
-> 当增加的数值超过法定额度时，会自动向更高一级的单位加 1 。
+> - 当增加的数值超过法定额度时，会自动向更高一级的单位加 1 。
 
 `roll()` 方法和 `add()` 类似，二者最主要的区别在于 `roll()` 方法中不会进行进位和退位运算。
 
@@ -290,18 +290,19 @@ private static int[] minimums = new int[] { 0, 1, 0, 1, 0, 1, 1, 1, 1, 0,       
 
 `Calendar` 作为 `Date` 类的补充和替代，当然得和 `Date` 进行相互转化。
 
-> 使用 getTime() 方法，从 Calendar 对象中获取 Date 对象。
-> 使用 setTime() 方法，将 Date 对象的值赋给 Calendar 对象。
+> - 使用 getTime() 方法，从 Calendar 对象中获取 Date 对象。
+> 
+> - 使用 setTime() 方法，将 Date 对象的值赋给 Calendar 对象。
 
 `Date` 的 6 个构造方法中，有 4 个已经过时了，其实它们是被 `Calendar` 类的相关方法替代了。
 
-> Date(int year, int month, int date) 被 Calendar.set(year + 1900, month, date) 替代。
+> - Date(int year, int month, int date) 被 Calendar.set(year + 1900, month, date) 替代。
 > 
-> Date(int year, int month, int date, int hrs, int min) 被 Calendar.set(year + 1900, month, date, hrs, min) 替代。
+> - Date(int year, int month, int date, int hrs, int min) 被 Calendar.set(year + 1900, month, date, hrs, min) 替代。
 > 
-> Date(int year, int month, int date, int hrs, int min, int sec) 被 Calendar.set(year + 1900, month, date, hrs, min, sec) 替代。
+> - Date(int year, int month, int date, int hrs, int min, int sec) 被 Calendar.set(year + 1900, month, date, hrs, min, sec) 替代。
 > 
-> Date(String s) 被 DateFormat.parse(String s) 替代。
+> - Date(String s) 被 DateFormat.parse(String s) 替代。
 
 <h1 id="3">SimpleDateFormat</h1>
 
@@ -524,3 +525,5 @@ System.out.println(date);    // Sun Mar 12 21:49:28 CST 2017
 注意，数据之间需要用 `#` 来分割。
 
 最后说一点， `SimpleDateFormat` 类不是线程安全的，如果有多个线程需要使用到 `SimpleDateFormat` 对象，建议每个线程单独创建，如果多个线程要获取同一个 `SimpleDateFormat` 对象，记得要加锁。
+
+请看[下集](https://dogebyte.github.io/java/2017/03/13/date-in-java(2).html)。
