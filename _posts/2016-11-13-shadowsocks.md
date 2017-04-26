@@ -22,7 +22,7 @@ tags: Chrome,Shadowsocks,GFW
 <h1 id="1">历史渊源</h1>
 
 Shadowsocks（中文名称：影梭）是使用 Python 、 C++ 、 C# 以及 Go 等语言开发、基于 Apache 许可证的开放源代码软件，用于保护网络流量、加密数据传输以及突破一些不可描述的审查。
-Shadowsocks 使用 Socks5 代理方式， Shadowsocks 分为服务器端和客户端。在使用之前，需要先将服务器端部署到服务器上面，然后通过客户端连接并创建本地代理。
+Shadowsocks 使用 Socks5 代理方式，Shadowsocks 分为服务器端和客户端。在使用之前，需要先将服务器端部署到服务器上面，然后通过客户端连接并创建本地代理。
 
 <h3 id="1_1">很久以前</h3>
 
@@ -70,35 +70,35 @@ Shadowsocks 使用 Socks5 代理方式， Shadowsocks 分为服务器端和客�
 
 <h3 id="2_1">安装 Chrome</h3>
 
-架起梯子之前， Chrome 的链接是打不开的 ^_^ 不过不要灰心，我们可以下载[离线版安装包](http://chromeba.com/help/download.html)。
+架起梯子之前，Chrome 的链接是打不开的 ^_^ 不过不要灰心，我们可以下载[离线版安装包](http://chromeba.com/help/download.html)。
 
 > 不建议下载某度或者某数字提供的安装包，因为这些都是阉割版，无法自动更新。
 
 <h3 id="2_2">安装 SwitchyOmega</h3>
 
-同样的，上述 SwitchOmega 的应用商店链接也是打不开的 ^_^ 不过还好，我们至少还可以打开  GitHub ，请移步[下载地址](https://github.com/FelisCatus/SwitchyOmega/releases) 。
+同样的，上述 SwitchOmega 的应用商店链接也是打不开的 ^_^ 不过还好，我们至少还可以打开  GitHub，请移步[下载地址](https://github.com/FelisCatus/SwitchyOmega/releases)。
 
-下载 `SwitchyOmega.crx` ，在 Chrome 地址栏中输入 `chrome://extensions/` ，打开扩展程序管理页面，将下载好的 `SwitchyOmega.crx` 拖入浏览器中，安装即可。
+下载 `SwitchyOmega.crx`，在 Chrome 地址栏中输入 `chrome://extensions/`，打开扩展程序管理页面，将下载好的 `SwitchyOmega.crx` 拖入浏览器中，安装即可。
 
 安装完成后，浏览器地址栏的右侧会出现一个灰色圈圈的 SwitchyOmega 图标，右键点击选项。
 
 ![选项](https://s25.postimg.org/4vdyh6f73/Switch_Omega01.png)
 
-首先新建一个情景模式，不妨将其命名为 `Shadowsocks` 。
+首先新建一个情景模式，不妨将其命名为 `Shadowsocks`。
 
 ![新建情景模式](https://s25.postimg.org/8g9u0ejqn/Switch_Omega02.png)
 
-点击新建的情景模式 `Shadowsocks` ，填入下面的配置信息。
+点击新建的情景模式 `Shadowsocks`，填入下面的配置信息。
 
 > 左上角的紫色方框可以点~选一个自己喜欢的颜色吧
 
 ![配置情景模式](https://s25.postimg.org/4xxu40iun/Switch_Omega03.png)
 
-点击情景模式 `自动切换` ，找到 `规则列表设置` ，填入规则列表网站：  `https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt` 。
+点击情景模式 `自动切换`，找到 `规则列表设置`，填入规则列表网站：  `https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt`。
 
 ![配置自动切换规则列表](https://s25.postimg.org/9xzvppdv3/Switch_Omega04.png)
 
-在 `规则列表` 中填入需要架梯子访问的网址，情景模式选择刚才建立的 `Shadowsocks` ，其中网址中的 `*` 为通配符。
+在 `规则列表` 中填入需要架梯子访问的网址，情景模式选择刚才建立的 `Shadowsocks`，其中网址中的 `*` 为通配符。
 
 ![自定义规则](https://s25.postimg.org/3yc4m1t2n/Switch_Omega05.png)
 

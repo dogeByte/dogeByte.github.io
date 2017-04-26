@@ -18,11 +18,11 @@ tags: Java
 4. [remove 方法](#4)
 5. [ArrayList 和 LinkedList](#5)
 
-`ArrayList` 作为动态数组的模拟，使用的是连续内存空间来存储数据，带来了可随机访问数据元素这一便利的同时，也有着插入和删除效率低下的缺点。对于插入和删除操作频率较高的场合，应该考虑使用`LinkedList` 。
+`ArrayList` 作为动态数组的模拟，使用的是连续内存空间来存储数据，带来了可随机访问数据元素这一便利的同时，也有着插入和删除效率低下的缺点。对于插入和删除操作频率较高的场合，应该考虑使用`LinkedList`。
 
 `LinkedList` 同时实现了 `List` 接口和 `Deque` 接口，也就是说它既可以看作一个顺序容器，又可以看作一个队列（`Queue`），同时又可以看作一个栈（`Stack`）。
 
-`LinkedList` 底层通过双向链表实现，每个节点用内部类 `Node` 表示。 `LinkedList` 中 `Node` 的实例对象 `first` 和 `last` 引用分别指向链表的第一个和最后一个元素。注意 `LinkedList` 中没有哑元，当链表为空的时候 `first` 和 `last` 都指向 `null` 。
+`LinkedList` 底层通过双向链表实现，每个节点用内部类 `Node` 表示。`LinkedList` 中 `Node` 的实例对象 `first` 和 `last` 引用分别指向链表的第一个和最后一个元素。注意 `LinkedList` 中没有哑元，当链表为空的时候 `first` 和 `last` 都指向 `null`。
 
 ```java
 private static class Node<E> {
@@ -37,7 +37,7 @@ private static class Node<E> {
 }
 ```
 
-可见， Java 语法中的引用充当了 C/C++ 语言中指针的角色。
+可见，Java 语法中的引用充当了 C/C++ 语言中指针的角色。
 
 `LinkedList` 的实现方式决定了所有跟下标相关的操作都是线性时间，而在首尾删除元素只需要常数时间。为了追求效率 `LinkedList` 也没有实现同步。如果多个线程同时访问一个 `LinkedList` 实例，而其中至少一个线程从结构上修改了列表，那么它必须保持外部同步。结构上的修改是指任何添加或删除一个或多个元素的操作，或者显式调整底层数组的大小；仅仅设置元素的值不是结构上的修改。这一般通过对自然封装该列表的对象进行同步操作来完成。如果不存在这样的对象，则应该使用工具类 `Collections` 中的 `synchronizedList` 方法将该列表“包装”起来。这最好在创建时完成，以防止意外对列表进行不同步的访问：
 
@@ -94,7 +94,7 @@ Node<E> node(int index) {
 }
 ```
 
-`node(int index)` 方法用于查找指定位置的 `Node<E>` 对象，由于链表是双向的，所以可以从前端查找，也可以从后端查找，具体寻找的方向取决于条件 `index < (size >> 1)` ，即 `index` 更靠近前端还是后端。
+`node(int index)` 方法用于查找指定位置的 `Node<E>` 对象，由于链表是双向的，所以可以从前端查找，也可以从后端查找，具体寻找的方向取决于条件 `index < (size >> 1)`，即 `index` 更靠近前端还是后端。
 
 除了使用 `set(int index, E element)` 方法，也可以先通过 `node(int index)` 方法找到对应下标元素的引用，然后修改 `Node<E>` 对象中 `item` 的值。
 

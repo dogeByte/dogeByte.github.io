@@ -81,7 +81,7 @@ public class Singleton {
 }
 ```
 
-这段代码的不完美之处在于 `instance = new Singleton()` 并非是一个原子操作，事实上在执行这句代码时， JVM 做了以下三件事：
+这段代码的不完美之处在于 `instance = new Singleton()` 并非是一个原子操作，事实上在执行这句代码时，JVM 做了以下三件事：
 
 1. 为 instance 分配内存；
 2. 调用 Singleton 的构造函数来初始化成员变量；

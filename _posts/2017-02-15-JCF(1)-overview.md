@@ -16,11 +16,11 @@ tags: Java
 
 在计算机科学中，容器是指实例为其他类的对象的集合的类、数据结构、或者抽象数据类型。换言之，它们以一种遵循特定访问规则的系统的方法来存储对象。容器的大小取决于其包含的对象（或元素）的数目。潜在的不同容器类型的实现可能在空间和时间复杂度上有所差别，这使得在给定应用场景中选择合适的某种实现具有灵活性。
 
-Java Collections Framework（JCF）为 Java 开发者提供了通用的容器，始于 JDK 1.2 。 Java 容器里只能放对象，对于八种基本类型（`short` `int` `long` `float` `double` `boolean` `byte` `char`），需要将其包装后才能放到容器里。很多时候装箱和拆箱能够自动完成，这虽然会导致额外的性能和空间开销，但简化了设计和编程。
+Java Collections Framework（JCF）为 Java 开发者提供了通用的容器，始于 JDK 1.2。Java 容器里只能放对象，对于八种基本类型（`short` `int` `long` `float` `double` `boolean` `byte` `char`），需要将其包装后才能放到容器里。很多时候装箱和拆箱能够自动完成，这虽然会导致额外的性能和空间开销，但简化了设计和编程。
 
 <h1 id="2">接口和实现类</h1>
 
-为了规范容器的行为， JCF 定义了 14 种容器接口（collection interfaces），它们的关系如下图所示：
+为了规范容器的行为，JCF 定义了 14 种容器接口（collection interfaces），它们的关系如下图所示：
 
 ![JCF collection interfaces](https://s25.postimg.org/71cupf81b/JCF01.png)
 

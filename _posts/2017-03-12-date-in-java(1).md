@@ -19,7 +19,7 @@ tags: Java
     6. [Date 和 Calendar 的关系](#2_6)
 3. [SimpleDateFormat](#3)
 
-自从 JDK 1.0 开始， Java 就提供了 `Date` 来处理时间和日期，作为老古董自然有很多东西是过时的。然后出现了 `Calendar` 来解决了很多问题，但是 `Calendar` 使用比较复杂，并且有些反人类的地方。直到 Java 8 中 `LocalDateTime` 中的出现，它吸收了 Joda-Time 库的经验，使得 Java 处理时间和日期变得比较“人性化”了。本篇介绍 Java 中的 `Date` 、 `Calendar` ，以及 `SimpleDateFormat` 的使用。
+自从 JDK 1.0 开始，Java 就提供了 `Date` 来处理时间和日期，作为老古董自然有很多东西是过时的。然后出现了 `Calendar` 来解决了很多问题，但是 `Calendar` 使用比较复杂，并且有些反人类的地方。直到 Java 8 中 `LocalDateTime` 中的出现，它吸收了 Joda-Time 库的经验，使得 Java 处理时间和日期变得比较“人性化”了。本篇介绍 Java 中的 `Date` 、 `Calendar`，以及 `SimpleDateFormat` 的使用。
 
 <h1 id="1">Date</h1>
 
@@ -65,7 +65,7 @@ public Date(int year, int month, int date, int hrs, int min, int sec) {
     }
 ```
 
-可以看到6个构造方法中，有4个已经被添加了 `@Deprecated` 的注解了，尚未过时的只有两个： `Date()` 和 `Date(long date)` 。其中，第一个构造方法调用的是 `System.currentTimeMillis()` 方法，这个方法返回的是一个 `long` 整数，表示从 GMT 1970年1月1日 00:00:00 到现在所经历的毫秒数。这个毫秒数很重要，无论是在 `Date` 类中还是 `Calendar` 类中，这个毫秒数都是计算时间日期的基准。
+可以看到6个构造方法中，有4个已经被添加了 `@Deprecated` 的注解了，尚未过时的只有两个： `Date()` 和 `Date(long date)`。其中，第一个构造方法调用的是 `System.currentTimeMillis()` 方法，这个方法返回的是一个 `long` 整数，表示从 GMT 1970年1月1日 00:00:00 到现在所经历的毫秒数。这个毫秒数很重要，无论是在 `Date` 类中还是 `Calendar` 类中，这个毫秒数都是计算时间日期的基准。
 
 怎么获得这个 `long` 的毫秒数呢？需要调用 `getTime()` 方法，注意并不是调用 `toString()` 方法，它们两者的差异可以从下面的代码中体现出来：
 
@@ -77,7 +77,7 @@ public static void main(String[] args) {
 }
 ```
 
-而第二个构造方法的参数 `date` ，表示创建的 `Date` 对象与 GMT 1970年1月1日 00:00:00 的时间差。
+而第二个构造方法的参数 `date`，表示创建的 `Date` 对象与 GMT 1970年1月1日 00:00:00 的时间差。
 
 ```java
 Date date = new Date(60 * 60 * 1000);
@@ -105,9 +105,9 @@ System.out.println(date.toString());    // Thu Jan 01 09:00:00 CST 1970
 
 <h3 id="2_1">构造方法</h3>
 
-与 `Date` 类不同， `Calendar` 类是一个抽象类，其直接子类是 `GregorianCalendar` 。既然 `Calendar` 类是抽象类，需要使用 `Calendar calendar = Calendar.getInstance();` 来创建一个 `Calendar` 对象。和 `Date` 类一样，创建好对象之后，便包含了当前日期和时间的信息。
+与 `Date` 类不同，`Calendar` 类是一个抽象类，其直接子类是 `GregorianCalendar`。既然 `Calendar` 类是抽象类，需要使用 `Calendar calendar = Calendar.getInstance();` 来创建一个 `Calendar` 对象。和 `Date` 类一样，创建好对象之后，便包含了当前日期和时间的信息。
 
-实际上， `getInstance()` 这个静态方法还有三个重载方法，它们的源码如下：
+实际上，`getInstance()` 这个静态方法还有三个重载方法，它们的源码如下：
 
 ```java
 public static Calendar getInstance() {
@@ -131,14 +131,14 @@ public static Calendar getInstance(TimeZone zone, Locale aLocale) {
 
 <h3 id="2_2">get() 方法</h3>
 
-`Date` 对象可以通过 `getTime()` 方法和 `toString()` 方法，能很容易的取到对应的时间信息。而在 `Calendar` 对象中，获取到时间和日期并不这么直接。在 `Calendar` 对象中， `getTime()` 方法返回的是一个 `Date` 对象，至于 `toString()` 方法的输出结果……
+`Date` 对象可以通过 `getTime()` 方法和 `toString()` 方法，能很容易的取到对应的时间信息。而在 `Calendar` 对象中，获取到时间和日期并不这么直接。在 `Calendar` 对象中，`getTime()` 方法返回的是一个 `Date` 对象，至于 `toString()` 方法的输出结果……
 
 ```
 java.util.GregorianCalendar[time=1489323573250,areFieldsSet=true,areAllFieldsSet=true,lenient=true,zone=sun.util.calendar.ZoneInfo[id="Asia/Shanghai",offset=28800000,dstSavings=0,useDaylight=false,transitions=19,lastRule=null],firstDayOfWeek=1,minimalDaysI
 nFirstWeek=1,ERA=1,YEAR=2017,MONTH=2,WEEK_OF_YEAR=11,WEEK_OF_MONTH=3,DAY_OF_MONTH=12,DAY_OF_YEAR=71,DAY_OF_WEEK=1,DAY_OF_WEEK_IN_MONTH=2,AM_PM=1,HOUR=8,HOUR_OF_DAY=20,MINUTE=59,SECOND=33,MILLISECOND=250,ZONE_OFFSET=28800000,DST_OFFSET=0]
 ```
 
-这从侧面反映了 `Calendar` 比 `Date` 强大，能提供更多的信息。其实在 `Calendar` 类中，有一点和 `Date` 类是一样的：它们都会保存一个毫秒值。 `Calendar` 类对于时间日期的各种计算也都是基于这个值来的。 `toString()` 方法返回的第一个值就是它，足以说明这个值的重要性。
+这从侧面反映了 `Calendar` 比 `Date` 强大，能提供更多的信息。其实在 `Calendar` 类中，有一点和 `Date` 类是一样的：它们都会保存一个毫秒值。`Calendar` 类对于时间日期的各种计算也都是基于这个值来的。`toString()` 方法返回的第一个值就是它，足以说明这个值的重要性。
 
 要获取 `Calendar` 对象所提供的信息，需要调用 `get()` 方法。
 
@@ -153,7 +153,7 @@ protected final int internalGet(int field) {
 }
 ```
 
-在 `complete()` 方法中，会调用 `computeTime()` 和 `computeFields()` 方法，这两个方法都是抽象方法，由子类 `GregorianCalendar` 实现。在 `computeTime()` 方法中，计算出年月日时分秒等时间相关的信息，而在` computeFields()` 方法中获取到对应的时区地区等信息。这两个方法会将所计算出来的信息保存在 `int` 类型的数组 `fields` 。fields数组保存的信息如下所示：
+在 `complete()` 方法中，会调用 `computeTime()` 和 `computeFields()` 方法，这两个方法都是抽象方法，由子类 `GregorianCalendar` 实现。在 `computeTime()` 方法中，计算出年月日时分秒等时间相关的信息，而在` computeFields()` 方法中获取到对应的时区地区等信息。这两个方法会将所计算出来的信息保存在 `int` 类型的数组 `fields`。fields数组保存的信息如下所示：
 
 ```java
 public static final int ERA = 0;
@@ -256,7 +256,7 @@ System.out.println(calendar.get(Calendar.DAY_OF_MONTH));    // 12
 > 
 > - 第二个参数如果为正，则数据增加；如果为负，则数据减少。
 > 
-> - 当增加的数值超过法定额度时，会自动向更高一级的单位加 1 。
+> - 当增加的数值超过法定额度时，会自动向更高一级的单位加 1。
 
 `roll()` 方法和 `add()` 类似，二者最主要的区别在于 `roll()` 方法中不会进行进位和退位运算。
 
@@ -279,7 +279,7 @@ System.out.println(calendar.getMinimum(Calendar.DAY_OF_MONTH));    // 1
 System.out.println(calendar.getMaximum(Calendar.DAY_OF_MONTH));    // 28
 ```
 
-注意，这里设置的是二月。 `fields` 数组中的各个字段的最大值和最小值如下：
+注意，这里设置的是二月。`fields` 数组中的各个字段的最大值和最小值如下：
 
 ```java
 private static int[] maximums = new int[] { 1, 292278994, 11, 53, 6, 31,         366, 7, 6, 1, 11, 23, 59, 59, 999, 14 * 3600 * 1000, 7200000 };
@@ -306,7 +306,7 @@ private static int[] minimums = new int[] { 0, 1, 0, 1, 0, 1, 1, 1, 1, 0,       
 
 <h1 id="3">SimpleDateFormat</h1>
 
-有了 `Date` 和 `Calendar` ，我们能获取并设置日期和时间，也能对日期和时间进行简单的计算。 `SimpleDateFormat` 可以对日期和时间进行格式化。
+有了 `Date` 和 `Calendar`，我们能获取并设置日期和时间，也能对日期和时间进行简单的计算。`SimpleDateFormat` 可以对日期和时间进行格式化。
 
 `SimpleDateFormat` 的构造方法如下：
 
@@ -524,6 +524,6 @@ System.out.println(date);    // Sun Mar 12 21:49:28 CST 2017
 
 注意，数据之间需要用 `#` 来分割。
 
-最后说一点， `SimpleDateFormat` 类不是线程安全的，如果有多个线程需要使用到 `SimpleDateFormat` 对象，建议每个线程单独创建，如果多个线程要获取同一个 `SimpleDateFormat` 对象，记得要加锁。
+最后说一点，`SimpleDateFormat` 类不是线程安全的，如果有多个线程需要使用到 `SimpleDateFormat` 对象，建议每个线程单独创建，如果多个线程要获取同一个 `SimpleDateFormat` 对象，记得要加锁。
 
 请看[下集](https://dogebyte.github.io/java/2017/03/13/date-in-java(2).html)。

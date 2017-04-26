@@ -26,7 +26,7 @@ tags: Java
 
 除了非同步和允许使用 `null` 之外，`HashMap` 与 `Hashtable` 大致相同。但是 `Hashtable` 是遗留类，并发性能不如引入了分段锁的 `ConcurrentHashMap`。不建议在新代码中使用 `Hashtable`，不需要线程安全的场合可以用 `HashMap` 替换，需要线程安全的场合可以用 `ConcurrentHashMap` 替换。
 
-与 `TreeMap` 不同的是， `HashMap` 不保证映射的顺序，特别是它不保证该顺序恒久不变。根据需要， `HashMap` 可能会对元素重新哈希，元素的顺序也会被重新打散，因此不同时间迭代同一个 `HashMap` ，元素的顺序可能会不同。
+与 `TreeMap` 不同的是，`HashMap` 不保证映射的顺序，特别是它不保证该顺序恒久不变。根据需要，`HashMap` 可能会对元素重新哈希，元素的顺序也会被重新打散，因此不同时间迭代同一个 `HashMap`，元素的顺序可能会不同。
 
 JDK 1.8 中对 `HashMap` 底层的实现进行了优化，例如引入红黑树的数据结构和针对扩容的优化等。
 
@@ -206,7 +206,7 @@ final Node<K,V> getNode(int hash, Object key) {
 
 高位运算通过 `hashCode()` 的高 16 位异或低 16 位实现的，`(h = k.hashCode()) ^ (h >>> 16)` 操作可以在 `table.length` 比较小的时候，也能保证考虑到高低位都参与到 hash 的计算中，同时不会有太大的开销。
 
-对于任意给定的 `key` ，只要它的 `hashCode()` 返回值相同，那么 `hash(Object key)` 方法所计算得到的 hash 值总是相同的。接下来把 hash 值对数组长度取模，这样使得元素在数组中分布均匀。`getNode` 方法中使用 `(length - 1) & hash` 来代替模运算：哈希桶数组 `table` 的长度 `length` 必须是 2 的整数次幂，则 length - 1 的二进制表示的低位全为 1，那么 `(length - 1) & hash` 操作相当于 hash 对 length 取模。
+对于任意给定的 `key`，只要它的 `hashCode()` 返回值相同，那么 `hash(Object key)` 方法所计算得到的 hash 值总是相同的。接下来把 hash 值对数组长度取模，这样使得元素在数组中分布均匀。`getNode` 方法中使用 `(length - 1) & hash` 来代替模运算：哈希桶数组 `table` 的长度 `length` 必须是 2 的整数次幂，则 length - 1 的二进制表示的低位全为 1，那么 `(length - 1) & hash` 操作相当于 hash 对 length 取模。
 
 `getNode(int hash, Object key)` 方法查找元素时，首先根据 key 的 hash 值找到在数组中的索引，如果该索引位置上的桶中第一个元素匹配成功（根据 equals 方法），则直接返回；反之则根据桶中存放的是红黑树或链表，用相应的方法找到该元素。
 
@@ -288,7 +288,7 @@ final V putVal(int hash, K key, V value, boolean onlyIfAbsent, boolean evict) {
 > 
 > 5. 遍历 table[i] 链表，判断其长度是否大于 8，大于 8 则把链表转换为红黑树并在红黑树中执行插入操作，否则进行链表的插入操作。遍历过程中若发现 key 已经存在则直接覆盖 value
 > 
-> 6. 插入成功后，判断实际存储的元素个数 size 是否超过最大容量 threshold ，如果超过则执行 resize() 进行扩容
+> 6. 插入成功后，判断实际存储的元素个数 size 是否超过最大容量 threshold，如果超过则执行 resize() 进行扩容
 
 <h3 id="4_2">resize()</h3>
 
@@ -403,7 +403,7 @@ xxxx xxxx xxxx xxxx xxxx xxxx xx<span style="background:#99CC99;"><font color="r
 
 0000 0000 0000 0000 0000 0000 00<span style="background:#99CC99;">00 0000</span>
 
-在新数组中的位置为 hash % newCap ，即 hash & (newCap - 1)：
+在新数组中的位置为 hash % newCap，即 hash & (newCap - 1)：
 
 xxxx xxxx xxxx xxxx xxxx xxxx xx<span style="background:#99CC99;"><font color="red">0</font>x xxxx</span>
 
@@ -425,7 +425,7 @@ xxxx xxxx xxxx xxxx xxxx xxxx xx<span style="background:#99CC99;"><font color="r
 
 0000 0000 0000 0000 0000 0000 00<span style="background:#99CC99;"><font color="red">1</font>0 0000</span>
 
-在新数组中的位置为 hash % newCap ，即 hash & (newCap - 1)：
+在新数组中的位置为 hash % newCap，即 hash & (newCap - 1)：
 
 xxxx xxxx xxxx xxxx xxxx xxxx xx<span style="background:#99CC99;"><font color="red">1</font>x xxxx</span>
 

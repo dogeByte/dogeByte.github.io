@@ -18,13 +18,13 @@ tags: Java
     1. [TemporalAdjusters](#4_1)
     2. [自定义调节器](#4_2)
 
-[上集](https://dogebyte.github.io/java/2017/03/12/date-in-java(1).html)简单介绍了 Java 中的 `Date` 类， `Calendar` 类以及用于格式化的 `SimpleDateFormater` 类。使用这些类的时候我们会明显地感受到其中的不便之处，比如 `Calendar` 类的月份是从 0 开始计数的；日期格式输出不够友好，都需要使用 `SimpleDateFormater` 类来格式化；一些简单的日期计算也比较麻烦等等。所以就有了 joda-time 这种第三方库来简化 Java 对于日期和时间的操作。为了改变这种情况， jdk 8 中对日期和时间对处理就吸收了 joda-time 库的特性。
+[上集](https://dogebyte.github.io/java/2017/03/12/date-in-java(1).html)简单介绍了 Java 中的 `Date` 类，`Calendar` 类以及用于格式化的 `SimpleDateFormater` 类。使用这些类的时候我们会明显地感受到其中的不便之处，比如 `Calendar` 类的月份是从 0 开始计数的；日期格式输出不够友好，都需要使用 `SimpleDateFormater` 类来格式化；一些简单的日期计算也比较麻烦等等。所以就有了 joda-time 这种第三方库来简化 Java 对于日期和时间的操作。为了改变这种情况，jdk 8 中对日期和时间对处理就吸收了 joda-time 库的特性。
 
 <h1 id="1">枚举类 Month 和 DayOfWeek</h1>
 
 <h3 id="1_1">Month</h3>
 
-`Calendar` 类的月份是从 0 开始计数的，因此月份的表示和计算比较复杂。 JDK 8 中为了改变这一现状，增加了枚举类 `Month` 来表示月份，甚至可以直接使用这个枚举类来进行月份的加减运算。
+`Calendar` 类的月份是从 0 开始计数的，因此月份的表示和计算比较复杂。JDK 8 中为了改变这一现状，增加了枚举类 `Month` 来表示月份，甚至可以直接使用这个枚举类来进行月份的加减运算。
 
 ```java
 public static Month of(int month) {
@@ -35,7 +35,7 @@ public static Month of(int month) {
 }
 ```
 
-`of(int month)` 方法用于创建一个 `Month` 对象。传入的参数范围为 [1,12] ，当传入的参数超出范围就会抛出异常。
+`of(int month)` 方法用于创建一个 `Month` 对象。传入的参数范围为 [1,12]，当传入的参数超出范围就会抛出异常。
 
 ```java
 public int getValue() {
@@ -78,7 +78,7 @@ public int length(boolean leapYear) {
 }
 ```
 
-`length(boolean leapYear)` 方法和 `maxLength()` / `minLength()` 两个方法都是用来获取 `Month` 对象表示的该月的日期数。其中参数 `leapYear` 表示是否为闰年。这三个方法返回的结果在很多情况下都是一样的，返回的都是当月的日数，30或者31。只有二月份除外，当 `Month` 对象表示二月份时， `maxLength()` 和 `length(true)` 返回29， `minLength()` 和 `length(false)` 返回28。
+`length(boolean leapYear)` 方法和 `maxLength()` / `minLength()` 两个方法都是用来获取 `Month` 对象表示的该月的日期数。其中参数 `leapYear` 表示是否为闰年。这三个方法返回的结果在很多情况下都是一样的，返回的都是当月的日数，30或者31。只有二月份除外，当 `Month` 对象表示二月份时，`maxLength()` 和 `length(true)` 返回29，`minLength()` 和 `length(false)` 返回28。
 
 ```java
 System.out.println(Month.DECEMBER);         // DECEMBER
@@ -136,7 +136,7 @@ System.out.println(dayOfWeek.getDisplayName(TextStyle.NARROW, Locale.ENGLISH)); 
 
 <h3 id="2_1">LocalDate 和 LocalTime</h3>
 
-根据不同的需求， `LocalDate` 提供了不同的创建方式，主要包括 `now()` 和 `of()` 这两个静态方法。
+根据不同的需求，`LocalDate` 提供了不同的创建方式，主要包括 `now()` 和 `of()` 这两个静态方法。
 
 ```java
 LocalDatedate1 = LocalDate.now();
@@ -289,7 +289,7 @@ System.out.println(time4);    // 12:00
 </tbody>
 </table>
 
-列表中的参数 `ChronoLocalDate` 是一个接口， `LocalDate` 是它的实现类，所以可以直接传入一个 `LocalDate`对象。
+列表中的参数 `ChronoLocalDate` 是一个接口，`LocalDate` 是它的实现类，所以可以直接传入一个 `LocalDate`对象。
 
 ```java
 LocalDate localDate = LocalDate.now();
@@ -379,7 +379,7 @@ System.out.println("下周二是 " + date.with(TemporalAdjusters.next(DayOfWeek.
 System.out.println("本月的第一个周二是 " + date.with(TemporalAdjusters.firstInMonth(DayOfWeek.TUESDAY)));    // 本月的第一个周二是 2017-03-07
 ```
 
-得到 `LocalDate` 对象后，调用 `with()` 方法，传入一个 `TemporalAdjusters` 对象即可。 `TemporalAdjusters` 类有许多静态方法来创建该对象：
+得到 `LocalDate` 对象后，调用 `with()` 方法，传入一个 `TemporalAdjusters` 对象即可。`TemporalAdjusters` 类有许多静态方法来创建该对象：
 
 > - firstDayOfMonth()
 > 

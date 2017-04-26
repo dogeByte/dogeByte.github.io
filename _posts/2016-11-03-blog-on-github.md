@@ -29,9 +29,9 @@ tags: GitHub,Ruby,Jekyll
 
 但是对于一个新手来说，看到一大堆源代码，只会让人头晕脑涨，不知何处入手。他希望看到的是，一个简明易懂的网页，说明每一步应该怎么做。于是 [GitHub Pages](https://pages.github.com/) 诞生了。
 
-[GitHub Pages](https://pages.github.com/) 提供给托管项目的开发者一个更个性化展示自己项目的方法，用来替代默认的源码列表。所以， [GitHub Pages](https://pages.github.com/) 可以被认为是用户编写的、托管在 [GitHub](https://github.com/) 上的静态网页。 [GitHub](https://github.com/) 提供模板，允许站内生成网页，也允许用户自己编写网页后上传。有意思的是，这种上传并不是单纯的上传，而是会经过 [Jekyll](https://jekyllrb.com/) 程序的再处理。
+[GitHub Pages](https://pages.github.com/) 提供给托管项目的开发者一个更个性化展示自己项目的方法，用来替代默认的源码列表。所以，[GitHub Pages](https://pages.github.com/) 可以被认为是用户编写的、托管在 [GitHub](https://github.com/) 上的静态网页。[GitHub](https://github.com/) 提供模板，允许站内生成网页，也允许用户自己编写网页后上传。有意思的是，这种上传并不是单纯的上传，而是会经过 [Jekyll](https://jekyllrb.com/) 程序的再处理。
 
-通过第二种方式，我们只需要按照规则建立仓库，将文章上传，就可以生成自己的博客。这样做，既拥有绝对管理权，又享受 [GitHub](https://github.com/) 带来的便利：不管何时何地，只要向主机提交 commit ，就能发布新文章。而且这一切还是免费的， [GitHub](https://github.com/) 提供无限流量，世界各地都有理想的访问速度。
+通过第二种方式，我们只需要按照规则建立仓库，将文章上传，就可以生成自己的博客。这样做，既拥有绝对管理权，又享受 [GitHub](https://github.com/) 带来的便利：不管何时何地，只要向主机提交 commit，就能发布新文章。而且这一切还是免费的，[GitHub](https://github.com/) 提供无限流量，世界各地都有理想的访问速度。
 
 <h1 id="2">Jekyll 简介</h1>
 
@@ -46,7 +46,7 @@ tags: GitHub,Ruby,Jekyll
 
 [Jekyll](https://jekyllrb.com/) 是一种简单的、适用于博客的、静态网站生成引擎。它使用一个模板目录作为网站布局的基础框架，支持 [Markdown](https://daringfireball.net/projects/markdown/) 、 [Textile](http://redcloth.org/textile) 等标记语言的解析，提供了模板、变量、插件等功能，最终生成一个完整的静态 Web 站点。简言之，只要按照 [Jekyll](https://jekyllrb.com/) 的规范和结构，不用写html，就可以生成网站。
 
-[Jekyll](https://jekyllrb.com/) 使用 [Liquid](https://github.com/Shopify/liquid/wiki) 模板语言，例如： `\{\{ page.title \}\}` 表示文章标题， `\{\{ content \}\}` 表示文章内容。更多模板变量请点 [这里](http://jekyllrb.com/docs/variables/) 。
+[Jekyll](https://jekyllrb.com/) 使用 [Liquid](https://github.com/Shopify/liquid/wiki) 模板语言，例如： `\{\{ page.title \}\}` 表示文章标题，`\{\{ content \}\}` 表示文章内容。更多模板变量请点 [这里](http://jekyllrb.com/docs/variables/)。
 
 [Jekyll](https://jekyllrb.com/) 的一般目录结构是酱紫的：
 ```
@@ -79,9 +79,9 @@ tags: GitHub,Ruby,Jekyll
 > 
 > _includes 目录中包含的 html 文件可以作为模块来加载。
 > 
-> _layouts 目录存放文章的模板， default.html 是整个网站的框架， post.html 则是单个文章的模板。
+> _layouts 目录存放文章的模板，default.html 是整个网站的框架，post.html 则是单个文章的模板。
 > 
-> _posts 目录中保存已发布的文章，文件名必须符合 yyyy-MM-dd-title.md ，否则会出现错误。
+> _posts 目录中保存已发布的文章，文件名必须符合 yyyy-MM-dd-title.md，否则会出现错误。
 > 
 > _site 目录存放最终生成的网站文件。
 > 
@@ -95,13 +95,13 @@ tags: GitHub,Ruby,Jekyll
 > 
 > index.html 为博客首页。
 
-[Jekyll](https://jekyllrb.com/) 与 [GitHub Pages](https://pages.github.com/) 的关系：[GitHub Pages](https://pages.github.com/)是一个由 [GitHub](https://github.com/) 提供的用于托管项目主页或博客的服务， [Jekyll](https://jekyllrb.com/) 是后台运行的引擎。
+[Jekyll](https://jekyllrb.com/) 与 [GitHub Pages](https://pages.github.com/) 的关系：[GitHub Pages](https://pages.github.com/)是一个由 [GitHub](https://github.com/) 提供的用于托管项目主页或博客的服务，[Jekyll](https://jekyllrb.com/) 是后台运行的引擎。
 
 <h1 id="3">建立个人 GitHub Pages</h1>
 
 [GitHub Pages](https://pages.github.com/) 分为用户、组织、项目三种，我们的博客要用到的是用户网站。在阅读以下内容之前，请自行[注册 GitHub 账号](https://github.com/join)。
 
-[新建](https://github.com/new)一个 git 仓库，名称为 username.github.io ，用你自己的 [GitHub](https://github.com/) 账户名替换仓库名中的 username 。
+[新建](https://github.com/new)一个 git 仓库，名称为 username.github.io，用你自己的 [GitHub](https://github.com/) 账户名替换仓库名中的 username。
 
 ![创建 GitHub 仓库](https://s25.postimg.org/723hx4igf/02_new_repository.png)
 
@@ -136,7 +136,7 @@ $ ssh-keygen -t rsa -C "email@example.com"
 
 把邮箱地址替换为自己的邮箱，一直敲回车直到命令执行完成。此时可以在用户目录里找到 `.ssh` 文件夹，里面有 `id_rsa` 和 `id_rsa.pub` 两个文件。其中 `id_rsa` 是私钥，不能泄露； `id_rsa.pub` 是公钥，无需保密。
 
-登录 [GitHub](https://github.com/) ，点击右上角的 [Settings](https://github.com/settings/keys) 。
+登录 [GitHub](https://github.com/)，点击右上角的 [Settings](https://github.com/settings/keys)。
 
 ![个人设置](https://s25.postimg.org/62hsf5sof/04_setting.png)
 
@@ -144,19 +144,19 @@ $ ssh-keygen -t rsa -C "email@example.com"
 
 ![SSH keys](https://s25.postimg.org/vzbgrrwbz/05_ssh_key.png)
 
-至此， git 环境搭建完成。
+至此，git 环境搭建完成。
 
 <h1 id="5">创建本地项目</h1>
 
-在你的电脑中建立一个文件夹，作为项目的主目录，我们假定其名称为 myblog 。
+在你的电脑中建立一个文件夹，作为项目的主目录，我们假定其名称为 myblog。
 
-对该目录进行 git 初始化：在目录空白处右键，点击 `Git Bash Here` ，在当前目录打开Git Bash 命令行，执行 `$ git init` 。
+对该目录进行 git 初始化：在目录空白处右键，点击 `Git Bash Here`，在当前目录打开Git Bash 命令行，执行 `$ git init`。
 
 ![Git Bash Here](https://s25.postimg.org/i6x1w55kf/06_Git_Bash_Here.png)
 
 此时目录内会生成一个 `.git` 隐藏文件夹，千万不要手动修改里里面的内容，否则将破坏此 git 仓库。
 
-现在有两种方法可以得到喜欢的模板。我们可以使用 [GitHub](https://github.com/) 官方提供的主题：进入[第一步](#1)创建的 [GitHub](https://github.com/) 仓库，点击 `Settings` ，找到 `GitHub Pages` 设置，点击 `Choose a theme` 。
+现在有两种方法可以得到喜欢的模板。我们可以使用 [GitHub](https://github.com/) 官方提供的主题：进入[第一步](#1)创建的 [GitHub](https://github.com/) 仓库，点击 `Settings`，找到 `GitHub Pages` 设置，点击 `Choose a theme`。
 
 ![设置主题](https://s25.postimg.org/9fq11vm9b/07_Choose_a_theme.png)
 
@@ -164,13 +164,13 @@ $ ssh-keygen -t rsa -C "email@example.com"
 
 ![主题列表](https://s25.postimg.org/5ynyywn73/08_themes.png)
 
-另一种获取模板或主题的方法是，使用别人的源码。 [Jekyll 项目](https://github.com/jekyll/jekyll/wiki/sites)给出了许多基于 [Jekyll](https://jekyllrb.com/) 的网站，把这些网站的源码 `fork` 到自己的 [GitHub](https://github.com/) 仓库里即可。
+另一种获取模板或主题的方法是，使用别人的源码。[Jekyll 项目](https://github.com/jekyll/jekyll/wiki/sites)给出了许多基于 [Jekyll](https://jekyllrb.com/) 的网站，把这些网站的源码 `fork` 到自己的 [GitHub](https://github.com/) 仓库里即可。
 
-无论是选择 [GitHub](https://github.com/) 官方主题，还是 `fork` 他人的源码，都需要把 [GitHub](https://github.com/) 仓库中的源文件下载到本地的博客目录中。在 [GitHub](https://github.com/) 仓库中点击 `Clone or download` ，复制远端 git 仓库地址。
+无论是选择 [GitHub](https://github.com/) 官方主题，还是 `fork` 他人的源码，都需要把 [GitHub](https://github.com/) 仓库中的源文件下载到本地的博客目录中。在 [GitHub](https://github.com/) 仓库中点击 `Clone or download`，复制远端 git 仓库地址。
 
 ![克隆](https://s25.postimg.org/jguvb6zcf/09_Clone_or_download.png)
 
-进入本地项目目录，在 Git Bash 命令行中执行： `$ git clone git@github.com:username/username.git` ，注意将 `username` 替换为你自己的 [GitHub](https://github.com/) 用户名，执行完成后，就成功把主题克隆到本地目录中。
+进入本地项目目录，在 Git Bash 命令行中执行： `$ git clone git@github.com:username/username.git`，注意将 `username` 替换为你自己的 [GitHub](https://github.com/) 用户名，执行完成后，就成功把主题克隆到本地目录中。
 
 <h1 id="6">配置 Jekyll 环境</h1>
 
@@ -178,19 +178,19 @@ $ ssh-keygen -t rsa -C "email@example.com"
 
 <h3 id="6_1">安装 Ruby</h3>
 
-请移步[下载地址](http://rubyinstaller.org/downloads/)， x64 代表64位，请根据实际环境选择合适的版本。
+请移步[下载地址](http://rubyinstaller.org/downloads/)，x64 代表64位，请根据实际环境选择合适的版本。
 
 ![下载 Ruby](https://s25.postimg.org/e6uhxn4hb/10_download_ruby.png)
 
 安装时有两点注意事项：
 
-> 1. 安装目录不能有中文或空格，如允许 C:\Ruby23-x64 ，不允许 D:\Program Files\Ruby
+> 1. 安装目录不能有中文或空格，如允许 C:\Ruby23-x64，不允许 D:\Program Files\Ruby
 > 
 > 2. 勾选 “ 将 Ruby 添加到环境变量 PATH ”
 
 ![安装 Ruby](https://s25.postimg.org/b19w7flv3/11_install_ruby.png)
 
-安装完成后，在命令提示符中执行 `ruby -v` ，输出 Ruby 版本号则说明安装成功。
+安装完成后，在命令提示符中执行 `ruby -v`，输出 Ruby 版本号则说明安装成功。
 
 ```
 C:\Users\username>ruby -v
@@ -203,11 +203,11 @@ ruby 2.3.3p222 (2016-10-21 revision 56859) [x64-mingw32]
 
 ![下载 DevKit](https://s25.postimg.org/nh6m16f73/12_download_Dev_Kit.png)
 
-运行安装包，直接解压至某文件夹，如 `C:\DevKit` 。
+运行安装包，直接解压至某文件夹，如 `C:\DevKit`。
 
 ![安装 DevKit](https://s25.postimg.org/jyum4seb3/13_install_Dev_Kit.png)
 
-在解压目录中打开命令行，执行 `ruby dk.rb init` ，通过初始化来创建 `config.yml` 文件。
+在解压目录中打开命令行，执行 `ruby dk.rb init`，通过初始化来创建 `config.yml` 文件。
 
 ```
 C:\DevKit>ruby dk.rb init
@@ -217,7 +217,7 @@ Initialization complete! Please review and modify the auto-generated
 of the installed Rubies you want enhanced by the DevKit.
 ```
 
-执行完成后，使用记事本打开生成的 `config.yml` 文件，在其末尾添加 `- C:/Ruby23-x64` ，注意短横线后有一个空格。此时 `config.yml` 文件内容如下：
+执行完成后，使用记事本打开生成的 `config.yml` 文件，在其末尾添加 `- C:/Ruby23-x64`，注意短横线后有一个空格。此时 `config.yml` 文件内容如下：
 
 ```
 # blablabla......
@@ -241,7 +241,7 @@ C:\DevKit>ruby dk.rb install
 
 <h3 id="6_3">安装 Jekyll</h3>
 
-确保 gem 已经安装：命令行执行 `gem –v` ，输出版本号说明 gem 已经安装。
+确保 gem 已经安装：命令行执行 `gem –v`，输出版本号说明 gem 已经安装。
 
 ```
 C:\Users\username>gem -v
@@ -297,7 +297,7 @@ wdm (0.1.1)
 yajl-ruby (1.1.0)
 ```
 
-进入本地项目目录，命令行执行 `bundle init` ，使用记事本打开生成的 `Gemfile` 文件，在末尾添加：
+进入本地项目目录，命令行执行 `bundle init`，使用记事本打开生成的 `Gemfile` 文件，在末尾添加：
 
 ```
 gem "jekyll"
@@ -305,7 +305,7 @@ gem "jekyll-paginate"
 gem "wdm"
 ```
 
-2016年5月1日起， [GitHub Pages](https://pages.github.com/) 将只支持 [kramdown](http://kramdown.gettalong.org/) 作为markdown解析器。在本地项目目录中，使用记事本打开 `_config.yml` 文件，修改或添加：
+2016年5月1日起，[GitHub Pages](https://pages.github.com/) 将只支持 [kramdown](http://kramdown.gettalong.org/) 作为markdown解析器。在本地项目目录中，使用记事本打开 `_config.yml` 文件，修改或添加：
 
 ```
 markdown: kramdown
@@ -319,15 +319,15 @@ gems:
   - jekyll-paginate
 ```
 
-在本地项目目录中，使用命令行执行 `jekyll build` ，项目目录中的文件以及由 `_post` 文件夹中 md 文件生成的 html 文件，都会被复制到 `_site` 目录中。
+在本地项目目录中，使用命令行执行 `jekyll build`，项目目录中的文件以及由 `_post` 文件夹中 md 文件生成的 html 文件，都会被复制到 `_site` 目录中。
 
-若使用命令行执行 `jekyll serve` ，项目会先执行 `jekyll build` ，待Jekyll服务开启后，使用浏览器访问 [http://127.0.0.1:4000/](http://127.0.0.1:4000/) 或 [http://localhost:4000/](http://localhost:4000/) ，即可预览查看 `_post` 文件夹中的文章。
+若使用命令行执行 `jekyll serve`，项目会先执行 `jekyll build`，待Jekyll服务开启后，使用浏览器访问 [http://127.0.0.1:4000/](http://127.0.0.1:4000/) 或 [http://localhost:4000/](http://localhost:4000/)，即可预览查看 `_post` 文件夹中的文章。
 
 <h3 id="6_4">配置代码高亮</h3>
 
-对于代码高亮区， [GitHub Pages](https://pages.github.com/) 将只支持 [Rouge](http://rouge.jneen.net/) 作为代码高亮器（ highlighter ）。 [Rouge](http://rouge.jneen.net/) 是一个纯 [Ruby](https://www.ruby-lang.org/en/) 实现的代码高亮库，它支持高亮 60 多种语言的代码，可以输出 HTML 、 ANSI-256 色文本格式。所以不需要再为了本地预览，而安装 [Python](https://www.python.org/) 和 [Pygments](http://pygments.org/) 了。
+对于代码高亮区，[GitHub Pages](https://pages.github.com/) 将只支持 [Rouge](http://rouge.jneen.net/) 作为代码高亮器（ highlighter ）。[Rouge](http://rouge.jneen.net/) 是一个纯 [Ruby](https://www.ruby-lang.org/en/) 实现的代码高亮库，它支持高亮 60 多种语言的代码，可以输出 HTML 、 ANSI-256 色文本格式。所以不需要再为了本地预览，而安装 [Python](https://www.python.org/) 和 [Pygments](http://pygments.org/) 了。
 
-在命令行中执行 `gem install rouge` 来安装 [Rouge](http://rouge.jneen.net/) ，可以通过 `rougify -v` 检验是否安装成功。
+在命令行中执行 `gem install rouge` 来安装 [Rouge](http://rouge.jneen.net/)，可以通过 `rougify -v` 检验是否安装成功。
 
 ```
 C:\Users\username>rougify -v
@@ -384,7 +384,7 @@ gems:
   - jekyll-paginate
 ```
 
-在写作时，只需要将代码段前添加 `点点点language` ，代码段后添加 `点点点` ，其中点代表键盘上数字1左边的键， language 代表程序语言的类型，如此即可实现代码高亮。 [Rouge](http://rouge.jneen.net/) 支持的全部语言类型请点击[这里](https://github.com/jneen/rouge/wiki/List-of-supported-languages-and-lexers)。
+在写作时，只需要将代码段前添加 `点点点language`，代码段后添加 `点点点`，其中点代表键盘上数字1左边的键，language 代表程序语言的类型，如此即可实现代码高亮。[Rouge](http://rouge.jneen.net/) 支持的全部语言类型请点击[这里](https://github.com/jneen/rouge/wiki/List-of-supported-languages-and-lexers)。
 
 ![代码高亮实例](https://s25.postimg.org/hvk6x4ei7/14_highlight.png)
 

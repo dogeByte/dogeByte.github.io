@@ -21,7 +21,7 @@ tags: Java
 
 <h1 id="1">Deque 接口</h1>
 
-说到栈和队列，首先要说 `Deque` 接口。 `Deque` 的含义是“double ended queue”，即双端队列，它是一个线性 `Collection` ，支持在两端插入和移除元素，因此它既可以当作栈使用，也可以当作队列使用。大多数 `Deque` 的实现对于它们能够包含的元素数没有固定限制，但此接口既支持有容量限制的双端队列，也支持没有固定大小限制的双端队列。
+说到栈和队列，首先要说 `Deque` 接口。`Deque` 的含义是“double ended queue”，即双端队列，它是一个线性 `Collection`，支持在两端插入和移除元素，因此它既可以当作栈使用，也可以当作队列使用。大多数 `Deque` 的实现对于它们能够包含的元素数没有固定限制，但此接口既支持有容量限制的双端队列，也支持没有固定大小限制的双端队列。
 
 `Deque` 接口提供插入、移除和检查元素的方法。每种方法都存在两种形式：一种形式在操作失败时抛出异常，另一种形式返回一个特殊值（null 或false，具体取决于操作）。插入操作的后一种形式是专为使用有容量限制的 `Deque` 实现设计的；在大多数实现中，插入操作不能失败。
 
@@ -148,7 +148,7 @@ tags: Java
 </table>
 </p>
 
-与 `List` 接口不同， `Deque` 接口不支持通过索引访问元素。
+与 `List` 接口不同，`Deque` 接口不支持通过索引访问元素。
 
 虽然 `Deque` 实现没有严格要求禁止插入 `null` 元素，但建议最好这样做。这是因为各种方法会将 `null` 用作特殊的返回值来指示双端队列为空。
 
@@ -156,9 +156,9 @@ tags: Java
 
 <h1 id="2">ArrayDeque 概述</h1>
 
-`ArrayDeque` 和 `LinkedList` 是 `Deque` 接口的两个通用实现。 `ArrayDeque` 类在用作堆栈时快于 `Stack` ，在用作队列时快于 `LinkedList` 。
+`ArrayDeque` 和 `LinkedList` 是 `Deque` 接口的两个通用实现。`ArrayDeque` 类在用作堆栈时快于 `Stack`，在用作队列时快于 `LinkedList`。
 
-`ArrayDeque` 内部维护着一个 `Object[]` 数组，为了满足可以同时在数组两端插入或删除元素的需求，该数组还必须是循环的，即数组的任何一点都可能被看作起点（`head`）或者终点（`tail`）。数组双端队列没有容量限制，它们可根据需要增加以支持使用。 `ArrayDeque` 不是线程安全的，在没有外部同步时，它们不支持多个线程的并发访问。此外，禁止插入 `null` 元素。
+`ArrayDeque` 内部维护着一个 `Object[]` 数组，为了满足可以同时在数组两端插入或删除元素的需求，该数组还必须是循环的，即数组的任何一点都可能被看作起点（`head`）或者终点（`tail`）。数组双端队列没有容量限制，它们可根据需要增加以支持使用。`ArrayDeque` 不是线程安全的，在没有外部同步时，它们不支持多个线程的并发访问。此外，禁止插入 `null` 元素。
 
 ```java
 transient Object[] elements;
@@ -168,7 +168,7 @@ transient int tail;
 
 ![循环数组](https://s25.postimg.org/6vcxrk31r/JCF04-01.png)
 
-`head` 指向队列的第一个有效元素， `tail` 指向尾端第一个可以插入元素的空位。因为 `Object[]` 是循环数组，所以 `head` 不一定总等于 0 ， `tail` 也不一定总是比 `head` 大。
+`head` 指向队列的第一个有效元素，`tail` 指向尾端第一个可以插入元素的空位。因为 `Object[]` 是循环数组，所以 `head` 不一定总等于 0，`tail` 也不一定总是比 `head` 大。
 
 <h1 id="3">构造方法</h1>
 
@@ -212,33 +212,33 @@ private void allocateElements(int numElements) {
 }
 ```
 
-`allocateElements(int numElements)` 方法用于分配一个指定的队列长度，如果给定的元素个数小于默认的最小初始化容量（8），则队列长度取 8 ；如果元素个数大于 8 ，则队列长度取大于元素个数的 2 的最小整数次幂，如：元素个数为 10 ，队列长度取 2^4=16 ；元素个数为 20 ，队列长度取 2^5=32 。
+`allocateElements(int numElements)` 方法用于分配一个指定的队列长度，如果给定的元素个数小于默认的最小初始化容量（8），则队列长度取 8 ；如果元素个数大于 8，则队列长度取大于元素个数的 2 的最小整数次幂，如：元素个数为 10，队列长度取 2^4=16 ；元素个数为 20，队列长度取 2^5=32。
 
 代码中最小整数次幂的求法很巧妙，下面以 x=4100 为例说明这个过程。
 
-我们知道 `int` 类型的数据占 4 个字节，即 32 位。 4100 的二进制表示为 ：
+我们知道 `int` 类型的数据占 4 个字节，即 32 位。4100 的二进制表示为 ：
 
 0000 0000 0000 0000 000<span style="background:#99CC99;"><font color="red">1</font> 0000 0000 0100</span>
 
-`x |= (x >>> 1);` 的意思是先将 x 右移一位（高位补零），然后把 x 和 移位后的 x 做或运算，结果重新赋值给 x 。执行后 x 的最高 2 位都变为 1 ：
+`x |= (x >>> 1);` 的意思是先将 x 右移一位（高位补零），然后把 x 和 移位后的 x 做或运算，结果重新赋值给 x。执行后 x 的最高 2 位都变为 1 ：
 
 0000 0000 0000 0000 000<span style="background:#99CC99;"><font color="red">1 1</font>000 0000 0110</span>
 
-执行 `x |= (x >>> 2);` 后， x 的最高 4 位都变为 1 ：
+执行 `x |= (x >>> 2);` 后，x 的最高 4 位都变为 1 ：
 
 0000 0000 0000 0000 000<span style="background:#99CC99;"><font color="red">1 111</font>0 0000 0111</span>
 
-执行 `x |= (x >>> 4);` 后， x 的最高 8 位都变为 1 ：
+执行 `x |= (x >>> 4);` 后，x 的最高 8 位都变为 1 ：
 
 0000 0000 0000 0000 000<span style="background:#99CC99;"><font color="red">1 1111 111</font>0 0111</span>
 
-执行 `x |= (x >>> 8);` 后， x 的所有有效位都变为 1 ：
+执行 `x |= (x >>> 8);` 后，x 的所有有效位都变为 1 ：
 
 0000 0000 0000 0000 000<span style="background:#99CC99;"><font color="red">1 1111 1111 1111</font></span>
 
-由于 x 只有 13 个有效位， 再执行 `x |= (x >>> 16);` ， x 不会发生变化。此时 x 的全部有效位都为 1 ，自增后即可得到 2 的最小整数次幂，即 2^13=8192 。
+由于 x 只有 13 个有效位，再执行 `x |= (x >>> 16);`，x 不会发生变化。此时 x 的全部有效位都为 1，自增后即可得到 2 的最小整数次幂，即 2^13=8192。
 
-如果最初指定的元素个数过多，大于 2^30 ，执行移位/或运算/自增后会溢出，此时 `initialCapacity` 为 `1000 0000 0000 0000 0000 0000 0000 0000` ，代表一个负数，应当右移一位分配 2^30 的空间。
+如果最初指定的元素个数过多，大于 2^30，执行移位/或运算/自增后会溢出，此时 `initialCapacity` 为 `1000 0000 0000 0000 0000 0000 0000 0000`，代表一个负数，应当右移一位分配 2^30 的空间。
 
 这个算法不仅时间效率高，而且只用到了一个变量，真可谓是短小精悍。
 
@@ -250,7 +250,7 @@ private void allocateElements(int numElements) {
 
 ![addFirst(E e)](https://s25.postimg.org/ifycklmcv/JCF04-02.png)
 
-实际上还需要考虑空间是否够用以及下标是否越界的问题。如果　`head` 为 0 之后接着调用 `addFirst(E e)` ，虽然空间足够，但 `head` 为 -1，下标越界了。
+实际上还需要考虑空间是否够用以及下标是否越界的问题。如果　`head` 为 0 之后接着调用 `addFirst(E e)`，虽然空间足够，但 `head` 为 -1，下标越界了。
 
 ```java
 public void addFirst(E e) {
@@ -264,7 +264,7 @@ public void addFirst(E e) {
 }
 ```
 
-`head = (head - 1) & (elements.length - 1)` 用于解决下标越界问题。根据对 `allocateElements(int numElements)` 方法的分析， `elements.length` 一定是 2 的整数次幂，那么 `elements.length - 1` 就是二进制低位全为 1 ，跟 `head - 1` 与运算之后就起到了取模的作用。如果 `head` ∈ [1, elements.length - 1]，则 head = head - 1 ； 如果 `head` 为负（只可能是 -1），则对其取相对于 `elements.length` 的补码，即 head = elements.length - 1 。
+`head = (head - 1) & (elements.length - 1)` 用于解决下标越界问题。根据对 `allocateElements(int numElements)` 方法的分析，`elements.length` 一定是 2 的整数次幂，那么 `elements.length - 1` 就是二进制低位全为 1，跟 `head - 1` 与运算之后就起到了取模的作用。如果 `head` ∈ [1, elements.length - 1]，则 head = head - 1 ； 如果 `head` 为负（只可能是 -1），则对其取相对于 `elements.length` 的补码，即 head = elements.length - 1。
 
 空间问题是在元素插入之后解决的，因为 `tail` 总是指向下一个可插入的空位，也就意味着 `elements` 数组至少有一个空位，所以插入元素的时候不用考虑空间问题。
 
@@ -340,7 +340,7 @@ public E pollFirst() {
         return null;     // 返回 null 意味着此双端队列为空
     }
     elements[h] = null;  // 垃圾回收
-    head = (h + 1) & (elements.length - 1); // 处理下标越界问题
+    head = (h + 1) & (elements.length - 1);     // 处理下标越界问题
     return result;
 }
 
@@ -359,9 +359,9 @@ public E pollLast() {
 
 <h3 id="5_2">removeFirst() 和 removeLast()</h3>
 
-> - removeFirst() 获取并移除此双端队列的第一个元素。此方法与 pollFirst() 唯一的不同在于：如果此双端队列为空，它将抛出 NoSuchElementException 。
+> - removeFirst() 获取并移除此双端队列的第一个元素。此方法与 pollFirst() 唯一的不同在于：如果此双端队列为空，它将抛出 NoSuchElementException。
 > 
-> - removeLast() 获取并移除此双端队列的最后一个元素。此方法与 pollLast() 唯一的不同在于：如果此双端队列为空，它将抛出 NoSuchElementException 。
+> - removeLast() 获取并移除此双端队列的最后一个元素。此方法与 pollLast() 唯一的不同在于：如果此双端队列为空，它将抛出 NoSuchElementException。
 
 ```java
 public E removeFirst() {
@@ -387,9 +387,9 @@ public E removeLast() {
 > 
 > - peekLast() 获取，但不移除此双端队列的最后一个元素；如果此双端队列为空，则返回 null。
 > 
-> - getFirst() 获取，但不移除此双端队列的第一个元素。此方法与 peekFirst() 唯一的不同在于：如果此双端队列为空，它将抛出一个 NoSuchElementException 。
+> - getFirst() 获取，但不移除此双端队列的第一个元素。此方法与 peekFirst() 唯一的不同在于：如果此双端队列为空，它将抛出一个 NoSuchElementException。
 > 
-> - getLast() 获取，但不移除此双端队列的最后一个元素。此方法与 peeklast() 唯一的不同在于：如果此双端队列为空，它将抛出一个 NoSuchElementException 。
+> - getLast() 获取，但不移除此双端队列的最后一个元素。此方法与 peeklast() 唯一的不同在于：如果此双端队列为空，它将抛出一个 NoSuchElementException。
 
 ```java
 public E peekFirst() {
